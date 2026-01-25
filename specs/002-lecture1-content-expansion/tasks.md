@@ -18,10 +18,10 @@ Create `lectures/01-python-intro/assets/generate_typing_matrix.py` script that g
 - Consistent color scheme with existing diagrams (Python blue/yellow)
 
 **Acceptance**:
-- [ ] Script runs without errors: `python generate_typing_matrix.py`
-- [ ] Output file created: `assets/diagrams/typing-matrix.png`
-- [ ] Python is clearly highlighted in the Dynamic+Strong quadrant
-- [ ] Colors consistent with existing python-timeline.png
+- [X] Script runs without errors: `python generate_typing_matrix.py`
+- [X] Output file created: `assets/diagrams/typing-matrix.png`
+- [X] Python is clearly highlighted in the Dynamic+Strong quadrant
+- [X] Colors consistent with existing python-timeline.png
 
 **Files**:
 - Create: `lectures/01-python-intro/assets/generate_typing_matrix.py`
@@ -39,10 +39,10 @@ Create `lectures/01-python-intro/assets/generate_modules_diagram.py` script that
 - Clear visual distinction between file and folder
 
 **Acceptance**:
-- [ ] Script runs without errors: `python generate_modules_diagram.py`
-- [ ] Output file created: `assets/diagrams/modules-packages.png`
-- [ ] Diagram clearly distinguishes module (file) from package (directory)
-- [ ] Shows __init__.py role
+- [X] Script runs without errors: `python generate_modules_diagram.py`
+- [X] Output file created: `assets/diagrams/modules-packages.png`
+- [X] Diagram clearly distinguishes module (file) from package (directory)
+- [X] Shows __init__.py role
 
 **Files**:
 - Create: `lectures/01-python-intro/assets/generate_modules_diagram.py`
@@ -63,11 +63,11 @@ Add new markdown cell after cell-5 (history table) with content from lecture-str
 - Code comparison: Python vs C/Java indentation
 
 **Acceptance**:
-- [ ] Cell appears after the Python history table
-- [ ] Contains ABC → Python narrative
-- [ ] Includes Guido quote about extensibility
-- [ ] Code comparison shows indentation vs braces
-- [ ] Ukrainian text with English terms in parentheses (English in parentheses only for specific terms that are used typically in English)
+- [X] Cell appears after the Python history table
+- [X] Contains ABC → Python narrative
+- [X] Includes Guido quote about extensibility
+- [X] Code comparison shows indentation vs braces
+- [X] Ukrainian text with English terms in parentheses (English in parentheses only for specific terms that are used typically in English)
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -86,11 +86,11 @@ Add new markdown cell after ABC storytelling with content from lecture-structure
 - Link to Python Versions Status page
 
 **Acceptance**:
-- [ ] Cell appears after ABC storytelling
-- [ ] Contains release cycle table
-- [ ] Explains 5-year support window
-- [ ] Student guidance included
-- [ ] Ukrainian text
+- [X] Cell appears after ABC storytelling
+- [X] Contains release cycle table
+- [X] Explains 5-year support window
+- [X] Student guidance included
+- [X] Ukrainian text
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -111,12 +111,12 @@ Add new markdown cell after release philosophy with content from lecture-structu
 - Conclusion: don't optimize prematurely
 
 **Acceptance**:
-- [ ] Cell appears after release philosophy
-- [ ] "Why awesome" section with 4 key points
-- [ ] GIL explained in beginner-friendly terms
-- [ ] When-it-matters vs when-it-doesn't clearly distinguished
-- [ ] Solutions listed with brief explanation
-- [ ] Ukrainian text with English terms
+- [X] Cell appears after release philosophy
+- [X] "Why awesome" section with 4 key points
+- [X] GIL explained in beginner-friendly terms
+- [X] When-it-matters vs when-it-doesn't clearly distinguished
+- [X] Solutions listed with brief explanation
+- [X] Ukrainian text with English terms
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -139,12 +139,12 @@ Add new markdown cell after cell-25 (data types table) with content from lecture
 - len() example showing duck typing behavior
 
 **Acceptance**:
-- [ ] Cell appears after basic data types table
-- [ ] Contains typing matrix table
-- [ ] References typing-matrix.png diagram
-- [ ] Duck typing quote included
-- [ ] len() example shows behavior-based typing
-- [ ] Ukrainian text
+- [X] Cell appears after basic data types table
+- [X] Contains typing matrix table
+- [X] References typing-matrix.png diagram
+- [X] Duck typing quote included
+- [X] len() example shows behavior-based typing
+- [X] Ukrainian text
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -163,11 +163,11 @@ Add new code cell after duck typing explanation with executable duck typing exam
 - Commented-out error case for demonstration
 
 **Acceptance**:
-- [ ] Code cell executes without errors
-- [ ] Demonstrates duck typing with multiple classes
-- [ ] Shows behavior-based compatibility
-- [ ] Commented line shows what would fail
-- [ ] Output clearly shows the concept
+- [X] Code cell executes without errors
+- [X] Demonstrates duck typing with multiple classes
+- [X] Shows behavior-based compatibility
+- [X] Commented line shows what would fail
+- [X] Output clearly shows the concept
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -190,12 +190,12 @@ Modify cell-18 (venv section) to add content from lecture-structure.md "Як ven
 - Show site-packages isolation
 
 **Acceptance**:
-- [ ] Existing venv content preserved
-- [ ] Directory tree structure added
-- [ ] Activation process explained
-- [ ] sys.prefix change mentioned
-- [ ] site-packages isolation clear
-- [ ] Ukrainian text
+- [X] Existing venv content preserved
+- [X] Directory tree structure added
+- [X] Activation process explained
+- [X] sys.prefix change mentioned
+- [X] site-packages isolation clear
+- [X] Ukrainian text
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -217,11 +217,11 @@ Add new markdown cell after cell-20 (pip section) with content from lecture-stru
 - PyPI explanation (500,000+ packages)
 
 **Acceptance**:
-- [ ] Cell appears after basic pip section
-- [ ] All pip commands shown with examples
-- [ ] PyPI explained
-- [ ] Advice about checking package popularity
-- [ ] Ukrainian text
+- [X] Cell appears after basic pip section
+- [X] All pip commands shown with examples
+- [X] PyPI explained
+- [X] Advice about checking package popularity
+- [X] Ukrainian text
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -241,12 +241,12 @@ Add new markdown cell after expanded pip section with content from lecture-struc
 - Common mistake warning (naming files same as stdlib modules)
 
 **Acceptance**:
-- [ ] Module vs package clearly distinguished
-- [ ] Package directory structure shown
-- [ ] sys.path search order explained
-- [ ] Diagram reference included
-- [ ] Common mistake warning included
-- [ ] Ukrainian text
+- [X] Module vs package clearly distinguished
+- [X] Package directory structure shown
+- [X] sys.path search order explained
+- [X] Diagram reference included
+- [X] Common mistake warning included
+- [X] Ukrainian text
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -264,10 +264,10 @@ Add new code cell after modules vs packages explanation with sys.path demonstrat
 - Numbered output for clarity
 
 **Acceptance**:
-- [ ] Code cell executes without errors
-- [ ] Shows sys.path entries
-- [ ] Demonstrates module location discovery
-- [ ] Output is clear and educational
+- [X] Code cell executes without errors
+- [X] Shows sys.path entries
+- [X] Demonstrates module location discovery
+- [X] Output is clear and educational
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -290,13 +290,13 @@ Replace content of cell-40 with structured references from lecture-structure.md:
 - Course footer
 
 **Acceptance**:
-- [ ] References categorized by type
-- [ ] Each reference has brief description
-- [ ] Difficulty/audience indicated where applicable
-- [ ] Free vs paid clearly marked
-- [ ] Learning path recommendations included
-- [ ] All URLs are valid
-- [ ] Ukrainian text
+- [X] References categorized by type
+- [X] Each reference has brief description
+- [X] Difficulty/audience indicated where applicable
+- [X] Free vs paid clearly marked
+- [X] Learning path recommendations included
+- [X] All URLs are valid
+- [X] Ukrainian text
 
 **Files**:
 - Modify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -316,11 +316,11 @@ Run all cells in the notebook and verify:
 - No broken references or missing assets
 
 **Acceptance**:
-- [ ] All cells execute successfully (Cell → Run All)
-- [ ] typing-matrix.png displays correctly
-- [ ] modules-packages.png displays correctly
-- [ ] No ModuleNotFoundError or FileNotFoundError
-- [ ] Code outputs match expectations
+- [X] All cells execute successfully (Cell → Run All)
+- [X] typing-matrix.png displays correctly
+- [X] modules-packages.png displays correctly
+- [X] No ModuleNotFoundError or FileNotFoundError
+- [X] Code outputs match expectations
 
 **Files**:
 - Verify: `lectures/01-python-intro/lecture-01.ipynb`
@@ -337,11 +337,11 @@ Review all new content against constitution v1.0.1 requirements:
 - Total duration estimate (~105 min target)
 
 **Acceptance**:
-- [ ] Ukrainian grammar checked
-- [ ] Technical terms formatted correctly
-- [ ] Icons used sparingly (count per section)
-- [ ] Content fits 1.5-hour limit
-- [ ] Memes retained from original
+- [X] Ukrainian grammar checked
+- [X] Technical terms formatted correctly
+- [X] Icons used sparingly (count per section)
+- [X] Content fits 1.5-hour limit
+- [X] Memes retained from original
 
 **Files**:
 - Review: `lectures/01-python-intro/lecture-01.ipynb`
