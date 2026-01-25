@@ -2,17 +2,16 @@
 ================================================================================
 SYNC IMPACT REPORT
 ================================================================================
-Version change: N/A → 1.0.0 (Initial constitution)
+Version change: 1.0.0 → 1.0.1 (PATCH)
 
-Modified principles: N/A (new document)
+Modified principles: None
 
-Added sections:
-- Core Principles (5 principles tailored for educational content development)
-- Content Standards (lecture format, language, multimedia requirements)
-- Development Workflow (creation, review, iteration process)
-- Governance
+Added sections: None
 
-Removed sections: N/A
+Modified sections:
+- Prohibited Practices: Added rule about minimal icon/emoji usage in content
+
+Removed sections: None
 
 Templates requiring updates:
 - .specify/templates/plan-template.md: ✅ Compatible (no changes needed)
@@ -20,7 +19,8 @@ Templates requiring updates:
 - .specify/templates/tasks-template.md: ✅ Compatible (no changes needed)
 - .specify/templates/commands/*.md: N/A (no command templates exist)
 
-Follow-up TODOs: None
+Follow-up TODOs:
+- Review existing lecture content for excessive icon usage
 ================================================================================
 -->
 
@@ -290,6 +290,7 @@ The course MUST use these specific technologies and tools:
 - DO NOT hallucinate facts: every non-trivial claim must link to official docs
 - DO NOT include huge copy-paste blocks without explanation
 - DO NOT use 3d-party packages, when standard library has the same functionality
+- DO NOT overuse icons/emojis in presentation text — they distract rather than help; use sparingly (1-2 per section maximum) and only where they add genuine value (e.g., checkmarks in summaries, warning signs for important notes)
 
 ## Development Workflow
 
@@ -349,4 +350,4 @@ This constitution establishes binding principles for the "Applied Software Devel
 - **MINOR**: New sections, significant content additions
 - **PATCH**: Clarifications, typo fixes, minor updates
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-01-24
+**Version**: 1.0.1 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-01-25
