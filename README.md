@@ -1,39 +1,36 @@
-# Applied Software Development (Python) 2026
+# Прикладне програмне забезпечення (Python) 2026
 
-University course materials. Python fundamentals through real-world applications.
+Матеріали курсу "Прикладне програмне забезпечення (Python)". (в розробці), розрахований на 14 лекцій
 
-## Structure
+## Лекції
 
-```
-lectures/          # Jupyter notebooks (Ukrainian)
-specs/             # Feature specifications
-.specify/          # Course constitution & templates
-```
+Всі наразі готові лекції знаходяться в папці [`lectures/`](lectures/) у форматі Jupyter Notebook:
 
-## Lectures
+- Лекція 1: Вступ до Python
 
-1. Python Intro
-2. Python Mechanics (names, references, mutability)
-3. Data Structures
-4. Functions & Decorators
-5. OOP Basics
-6. OOP Advanced
-7. Error Handling & Context Managers
-8. Files & Serialization
-9. Testing
-10. Web Development (FastAPI)
-11. Databases (SQLAlchemy)
-12. Async Programming
-13. CLI & Scripting
-14. Final Project
+## Експериментальний репозиторій
 
-## Development
+Цей репозиторій є експериментальним — лекції частково створені за допомогою AI-інструментів (Claude Code, SpecKit).
 
-Course content developed using [SpecKit](https://github.com/speckit/speckit) workflow.
+Якщо знайшли помилку або маєте пропозиції — створюйте Issues та Pull Requests.
+
+## Розробка лекцій (SpecKit)
+
+Для створення або покращення лекцій використовується SpecKit workflow:
+(https://github.com/github/spec-kit)
 
 ```bash
-/speckit.specify   # Create feature spec
-/speckit.plan      # Design implementation
-/speckit.tasks     # Generate task list
-/speckit.implement # Execute tasks
+# 1. Створити специфікацію нової фічі
+/speckit.specify
+
+# 2. Спланувати імплементацію
+/speckit.plan
+
+# 3. Згенерувати список задач
+/speckit.tasks
+
+# 4. Виконати задачі
+/speckit.implement
 ```
+
+Конституція курсу: [`.specify/memory/constitution.md`](.specify/memory/constitution.md)
