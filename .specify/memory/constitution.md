@@ -2,14 +2,16 @@
 ================================================================================
 SYNC IMPACT REPORT
 ================================================================================
-Version change: 1.0.0 → 1.0.1 (PATCH)
+Version change: 1.0.1 → 1.1.0 (MINOR)
 
-Modified principles: None
+Modified principles:
+- III. Progressive Skill Building: Added cross-lecture consistency requirement
 
-Added sections: None
+Added sections:
+- Phase 2: Content Creation: Added "Step 0 - Contextual Analysis" for previous lecture review
 
 Modified sections:
-- Prohibited Practices: Added rule about minimal icon/emoji usage in content
+- Development Workflow: Enhanced with mandatory lecture analysis before content creation
 
 Removed sections: None
 
@@ -20,7 +22,7 @@ Templates requiring updates:
 - .specify/templates/commands/*.md: N/A (no command templates exist)
 
 Follow-up TODOs:
-- Review existing lecture content for excessive icon usage
+- Review existing lecture content for excessive icon usage (carried from 1.0.1)
 ================================================================================
 -->
 
@@ -59,6 +61,11 @@ The course MUST emphasize building real, functional applications over theoretica
 ### III. Progressive Skill Building
 
 Each lecture MUST build upon previous lectures while remaining self-contained enough for review.
+
+- Before creating any lecture content, the author MUST analyze the exact previous lecture in detail AND briefly review all earlier lectures to:
+  - Maintain consistent tone, terminology, and pedagogical style
+  - Avoid repeating content, examples, or explanations already covered
+  - Ensure natural narrative flow and cross-references
 - Lecture 1 — Python intro + environment setup
     Topics
     - What Python is (interpreted, dynamic, batteries-included) + where it’s used
@@ -72,16 +79,18 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Basic operators, formatting (f-strings)
 - Lecture 2 — Core language mechanics (how Python “works”)
     Topics
+    - Deep dive into Python data types and the way they are stored in memory 
     - Names vs values, references, identity (id()), mutability
     - Memory model intuition: list vs tuple, string immutability
     - Truthiness, comparisons, is vs ==
-    - Control flow: if/elif/else, match (brief, optional)
+    - Control flow: if/elif/else, match
     - Loops: for, while, break/continue, range()
     - Practical patterns: counting, searching, early exit
     - Intro to time measurements (very light) to motivate performance later
 - Lecture 3 — Data structures + "Pythonic" patterns
     Topics
     - Collections: list, tuple, dict, set
+    - How collections are stored in memory
     - Indexing/slicing, membership checks, nested structures
     - Common methods + pitfalls (.append, .extend, .get, .pop)
     - Iteration patterns: enumerate, zip
@@ -305,9 +314,16 @@ Before writing any lecture content:
 
 ### Phase 2: Content Creation
 
+**Step 0 - Contextual Analysis (MANDATORY before any content creation):**
+- Read and analyze the exact previous lecture in full detail
+- Briefly review all earlier lectures (skim headings, examples, key terminology)
+- Document: tone patterns, recurring phrases, analogies used, examples given
+- Note content already covered to avoid duplication
+- Identify opportunities for cross-references ("as we saw in Lecture N...")
+
 1. Create Jupyter notebook with structure template
-2. Write explanatory text in Ukrainian
-3. Develop and test all code examples
+2. Write explanatory text in Ukrainian (matching established tone)
+3. Develop and test all code examples (avoid duplicating previous examples)
 4. Create exercises with hidden solution cells
 5. Add memes and visual elements appropriately
 
@@ -350,4 +366,4 @@ This constitution establishes binding principles for the "Applied Software Devel
 - **MINOR**: New sections, significant content additions
 - **PATCH**: Clarifications, typo fixes, minor updates
 
-**Version**: 1.0.1 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-01-25
+**Version**: 1.1.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-01-31
