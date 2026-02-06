@@ -30,10 +30,10 @@ lectures/
 
 **Purpose**: Create directory structure and notebook skeleton
 
-- [ ] T001 Create directory structure: lectures/02-core-mechanics/assets/diagrams/ and lectures/02-core-mechanics/assets/memes/
-- [ ] T002 Create empty Jupyter notebook: lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T003 [P] Source or create meme for mutability section in lectures/02-core-mechanics/assets/memes/mutability-bug.png
-- [ ] T004 [P] Source or create meme for timing section in lectures/02-core-mechanics/assets/memes/timing-meme.png
+- [x] T001 Create directory structure: lectures/02-core-mechanics/assets/diagrams/ and lectures/02-core-mechanics/assets/memes/
+- [x] T002 Create empty Jupyter notebook: lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T003 [P] Source or create meme for mutability section in lectures/02-core-mechanics/assets/memes/mutability-bug.png
+- [x] T004 [P] Source or create meme for timing section in lectures/02-core-mechanics/assets/memes/timing-meme.png
 
 **Checkpoint**: Directory structure ready, assets prepared.
 
@@ -45,10 +45,10 @@ lectures/
 
 **CRITICAL**: These cells must exist before any content section can be added.
 
-- [ ] T005 Create header cell with lecture number, title, course info in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T006 Create learning objectives cell (5 objectives from data-model.md) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T007 Create prerequisites cell referencing Lecture 1 completion in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T008 Add cross-reference introduction: "Як ми бачили у Лекції 1..." in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T005 Create header cell with lecture number, title, course info in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T006 Create learning objectives cell (5 objectives from data-model.md) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T007 Create prerequisites cell referencing Lecture 1 completion in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T008 Add cross-reference introduction: "Як ми бачили у Лекції 1..." in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Notebook skeleton ready with header, objectives, prerequisites.
 
@@ -62,14 +62,14 @@ lectures/
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Create Section 1 markdown header: "1. Імена та Об'єкти (Names and Objects)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T010 [US1] Write concept explanation: everything is an object, names are references in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T011 [P] [US1] Source or create names-objects diagram in lectures/02-core-mechanics/assets/diagrams/names-objects.png
-- [ ] T012 [US1] Add diagram cell referencing assets/diagrams/names-objects.png in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T013 [US1] Create code cell: id() demonstration with integers in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T014 [US1] Create code cell: same object, multiple names (aliasing) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T015 [US1] Create code cell: reassignment creates new binding in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T016 [US1] Add cross-reference to Lecture 1 dynamic typing in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T009 [US1] Create Section 1 markdown header: "1. Імена та Об'єкти (Names and Objects)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T010 [US1] Write concept explanation: everything is an object, names are references in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T011 [P] [US1] Source or create names-objects diagram in lectures/02-core-mechanics/assets/diagrams/names-objects.png
+- [x] T012 [US1] Add diagram cell referencing assets/diagrams/names-objects.png in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T013 [US1] Create code cell: id() demonstration with integers in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T014 [US1] Create code cell: same object, multiple names (aliasing) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T015 [US1] Create code cell: reassignment creates new binding in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T016 [US1] Add cross-reference to Lecture 1 dynamic typing in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 1 complete - students understand names vs objects.
 
@@ -83,14 +83,14 @@ lectures/
 
 ### Implementation for User Story 2
 
-- [ ] T017 [US2] Create Section 2 markdown header: "2. Мутабельність (Mutability)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T018 [US2] Add mutability meme cell referencing assets/memes/mutability-bug.png in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T019 [US2] Write concept explanation: mutable vs immutable types in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T020 [US2] Create mutability table (list/dict/set vs int/str/tuple) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T021 [US2] Create code cell: modifying list through alias in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T022 [US2] Create code cell: string immutability (.upper() returns new string) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T023 [US2] Create code cell: mutable default argument bug in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T024 [US2] Create code cell: mutable default argument fix using None in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T017 [US2] Create Section 2 markdown header: "2. Мутабельність (Mutability)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T018 [US2] Add mutability meme cell referencing assets/memes/mutability-bug.png in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T019 [US2] Write concept explanation: mutable vs immutable types in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T020 [US2] Create mutability table (list/dict/set vs int/str/tuple) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T021 [US2] Create code cell: modifying list through alias in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T022 [US2] Create code cell: string immutability (.upper() returns new string) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T023 [US2] Create code cell: mutable default argument bug in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T024 [US2] Create code cell: mutable default argument fix using None in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 2 complete - students understand mutability.
 
@@ -104,18 +104,18 @@ lectures/
 
 ### Implementation for User Story 6
 
-- [ ] T025 [US6] Create Section 6 markdown header: "6. Керування Потоком (Control Flow)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T026 [US6] Write subsection 6.1: "Умовні Оператори" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T027 [US6] Create code cell: if/elif/else grade calculation example in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T028 [US6] Write match statement introduction (Python 3.10+) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T029 [US6] Create code cell: match with HTTP status example in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T030 [US6] Create code cell: match with sequence unpacking example in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T031 [US6] Create code cell: match with guard clauses example in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T032 [US6] Write subsection 6.2: "Цикли" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T033 [US6] Create code cell: for loop with range() variations in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T034 [US6] Create code cell: while loop with break in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T035 [US6] Create code cell: for...else search pattern in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T036 [US6] Add reference to enumerate() from Lecture 1 in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T025 [US6] Create Section 6 markdown header: "6. Керування Потоком (Control Flow)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T026 [US6] Write subsection 6.1: "Умовні Оператори" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T027 [US6] Create code cell: if/elif/else grade calculation example in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T028 [US6] Write match statement introduction (Python 3.10+) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T029 [US6] Create code cell: match with HTTP status example in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T030 [US6] Create code cell: match with sequence unpacking example in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T031 [US6] Create code cell: match with guard clauses example in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T032 [US6] Write subsection 6.2: "Цикли" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T033 [US6] Create code cell: for loop with range() variations in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T034 [US6] Create code cell: while loop with break in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T035 [US6] Create code cell: for...else search pattern in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T036 [US6] Add reference to enumerate() from Lecture 1 in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 6 complete - students master control flow.
 
@@ -129,12 +129,12 @@ lectures/
 
 ### Implementation for User Story 3
 
-- [ ] T037 [US3] Create Section 3 markdown header: "3. Представлення в Пам'яті (Memory Representation)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T038 [P] [US3] Source or create memory-model diagram in lectures/02-core-mechanics/assets/diagrams/memory-model.png
-- [ ] T039 [US3] Write concept explanation: PyObject structure, overhead in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T040 [US3] Add diagram cell referencing assets/diagrams/memory-model.png in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T041 [US3] Create code cell: sys.getsizeof() comparison list vs tuple in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T042 [US3] Write explanation: why tuples are more memory-efficient in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T037 [US3] Create Section 3 markdown header: "3. Представлення в Пам'яті (Memory Representation)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T038 [P] [US3] Source or create memory-model diagram in lectures/02-core-mechanics/assets/diagrams/memory-model.png
+- [x] T039 [US3] Write concept explanation: PyObject structure, overhead in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T040 [US3] Add diagram cell referencing assets/diagrams/memory-model.png in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T041 [US3] Create code cell: sys.getsizeof() comparison list vs tuple in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T042 [US3] Write explanation: why tuples are more memory-efficient in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 3 complete - students visualize memory.
 
@@ -148,14 +148,14 @@ lectures/
 
 ### Implementation for User Story 4
 
-- [ ] T043 [US4] Create Section 4 markdown header: "4. Ідентичність vs Рівність (Identity vs Equality)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T044 [US4] Write concept explanation: is checks identity, == checks equality in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T045 [US4] Create code cell: is vs == with small integers (cached) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T046 [US4] Create code cell: is vs == with large integers (not cached) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T047 [US4] Create code cell: is vs == with lists in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T048 [US4] Create code cell: is None pattern in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T049 [US4] Create code cell: string interning behavior in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T050 [US4] Add warning box: integer caching is CPython detail, never use is for values in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T043 [US4] Create Section 4 markdown header: "4. Ідентичність vs Рівність (Identity vs Equality)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T044 [US4] Write concept explanation: is checks identity, == checks equality in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T045 [US4] Create code cell: is vs == with small integers (cached) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T046 [US4] Create code cell: is vs == with large integers (not cached) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T047 [US4] Create code cell: is vs == with lists in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T048 [US4] Create code cell: is None pattern in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T049 [US4] Create code cell: string interning behavior in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T050 [US4] Add warning box: integer caching is CPython detail, never use is for values in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 4 complete - students master is vs ==.
 
@@ -169,12 +169,12 @@ lectures/
 
 ### Implementation for User Story 5
 
-- [ ] T051 [US5] Create Section 5 markdown header: "5. Істинність (Truthiness)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T052 [US5] Write concept explanation: falsy values list in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T053 [US5] Create code cell: all falsy values demonstration in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T054 [US5] Create code cell: idiomatic truthiness check pattern in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T055 [US5] Create code cell: comparison chaining (0 < x < 10) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T056 [US5] Create code cell: short-circuit evaluation with and/or in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T051 [US5] Create Section 5 markdown header: "5. Істинність (Truthiness)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T052 [US5] Write concept explanation: falsy values list in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T053 [US5] Create code cell: all falsy values demonstration in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T054 [US5] Create code cell: idiomatic truthiness check pattern in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T055 [US5] Create code cell: comparison chaining (0 < x < 10) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T056 [US5] Create code cell: short-circuit evaluation with and/or in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 5 complete - students write Pythonic conditions.
 
@@ -188,11 +188,11 @@ lectures/
 
 ### Implementation for User Story 7
 
-- [ ] T057 [US7] Create Section 7 markdown header: "7. Практичні Патерни (Practical Patterns)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T058 [US7] Write concept explanation: common loop patterns in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T059 [US7] Create code cell: counting pattern in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T060 [US7] Create code cell: search with early exit pattern in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T061 [US7] Create code cell: accumulation pattern in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T057 [US7] Create Section 7 markdown header: "7. Практичні Патерни (Practical Patterns)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T058 [US7] Write concept explanation: common loop patterns in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T059 [US7] Create code cell: counting pattern in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T060 [US7] Create code cell: search with early exit pattern in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T061 [US7] Create code cell: accumulation pattern in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 7 complete - students know common patterns.
 
@@ -206,12 +206,12 @@ lectures/
 
 ### Implementation for User Story 8
 
-- [ ] T062 [US8] Create Section 8 markdown header: "8. Вимірювання Часу (Timing)" in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T063 [US8] Add timing meme cell referencing assets/memes/timing-meme.png in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T064 [US8] Write concept explanation: why measure performance in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T065 [US8] Create code cell: time.perf_counter() basic usage in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T066 [US8] Create code cell: Python loop vs sum() comparison in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T067 [US8] Add cross-reference to Lecture 1 bytecode/PVM in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T062 [US8] Create Section 8 markdown header: "8. Вимірювання Часу (Timing)" in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T063 [US8] Add timing meme cell referencing assets/memes/timing-meme.png in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T064 [US8] Write concept explanation: why measure performance in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T065 [US8] Create code cell: time.perf_counter() basic usage in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T066 [US8] Create code cell: Python loop vs sum() comparison in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T067 [US8] Add cross-reference to Lecture 1 bytecode/PVM in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Section 8 complete - students understand timing basics.
 
@@ -223,19 +223,19 @@ lectures/
 
 ### Exercises
 
-- [ ] T068 Create Exercise 1: "Predict the Output" (mutability, identity) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T069 Create Exercise 1 solution (hidden cell) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T070 Create Exercise 2: "Fix the Bug" (mutable default argument) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T071 Create Exercise 2 solution (hidden cell) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T072 Create Exercise 3: "Control Flow Challenge" (counting/searching) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T073 Create Exercise 3 solution (hidden cell) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T068 Create Exercise 1: "Predict the Output" (mutability, identity) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T069 Create Exercise 1 solution (hidden cell) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T070 Create Exercise 2: "Fix the Bug" (mutable default argument) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T071 Create Exercise 2 solution (hidden cell) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T072 Create Exercise 3: "Control Flow Challenge" (counting/searching) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T073 Create Exercise 3 solution (hidden cell) in lectures/02-core-mechanics/lecture-02.ipynb
 
 ### Summary & References
 
-- [ ] T074 Create Summary section with checkmarks per data-model.md in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T075 Create "What's Next" section previewing Lecture 3 in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T076 Create homework assignment section in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T077 Create References section with links from research.md in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T074 Create Summary section with checkmarks per data-model.md in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T075 Create "What's Next" section previewing Lecture 3 in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T076 Create homework assignment section in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T077 Create References section with links from research.md in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: All content complete.
 
@@ -245,14 +245,14 @@ lectures/
 
 **Purpose**: Final review and quality assurance
 
-- [ ] T078 Reorder sections to match data-model.md flow (1-8) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T078 Reorder sections to match data-model.md flow (1-8) in lectures/02-core-mechanics/lecture-02.ipynb
 - [ ] T079 Run Kernel > Restart & Run All to verify all code cells execute in lectures/02-core-mechanics/lecture-02.ipynb
 - [ ] T080 Verify all images load correctly from assets/ folder in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T081 Review Ukrainian text for grammar and clarity in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T082 Verify English terms in parentheses on first use in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T083 Check constitution compliance: 2 memes, 3+ diagrams, 5+ examples, 2+ exercises in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T084 Verify no content repeated from Lecture 1 (duck typing, bytecode/PVM) in lectures/02-core-mechanics/lecture-02.ipynb
-- [ ] T085 Estimate lecture duration target: 1.5 hours in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T081 Review Ukrainian text for grammar and clarity in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T082 Verify English terms in parentheses on first use in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T083 Check constitution compliance: 2 memes, 3+ diagrams, 5+ examples, 2+ exercises in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T084 Verify no content repeated from Lecture 1 (duck typing, bytecode/PVM) in lectures/02-core-mechanics/lecture-02.ipynb
+- [x] T085 Estimate lecture duration target: 1.5 hours in lectures/02-core-mechanics/lecture-02.ipynb
 
 **Checkpoint**: Lecture 2 complete and validated.
 
