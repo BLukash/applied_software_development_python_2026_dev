@@ -90,7 +90,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
 - Lecture 3 — Data structures + "Pythonic" patterns
     Topics
     - Collections: list, tuple, dict, set
-    - How collections are stored in memory
+    - How collections are stored in memory deep dive
     - Indexing/slicing, membership checks, nested structures
     - Common methods + pitfalls (.append, .extend, .get, .pop)
     - Iteration patterns: enumerate, zip
