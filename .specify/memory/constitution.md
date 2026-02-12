@@ -82,6 +82,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Deep dive into Python data types and the way they are stored in memory 
     - Names vs values, references, identity (id()), mutability
     - Memory model intuition: list vs tuple, string immutability
+    - Basics of collections: list, tuple, dict, set
     - Truthiness, comparisons, is vs ==
     - Control flow: if/elif/else, match
     - Loops: for, while, break/continue, range()
@@ -89,17 +90,18 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Intro to time measurements (very light) to motivate performance later
 - Lecture 3 — Data structures + "Pythonic" patterns
     Topics
-    - Collections: list, tuple, dict, set
-    - How collections are stored in memory deep dive
+    - Collections deep dive: list, tuple, dict, set
+    - How collections are stored in memory deep dive - with images from the web
     - Indexing/slicing, membership checks, nested structures
     - Common methods + pitfalls (.append, .extend, .get, .pop)
     - Iteration patterns: enumerate, zip
     - Comprehensions: list/dict/set comprehensions
     - Complexity intuition: lookup in dict/set vs list scan
+    - Intro to functions: parameters, return, defaults, args/kwargs
     - Mini parsing task (e.g., parse logs / compute frequency table)
 - Lecture 4 — Functions + modules + errors
     Topics
-    - Functions: parameters, return, defaults, *args/**kwargs
+    - Functions deep dive, lambda functions, functions as parameters. sorting and keys. map, reduce, filter. lambda functions. xranges, iterators and generators.
     - Scope: local/global, closures (light)
     - Docstrings and readable APIs (PEP 257 style)
     - Exceptions: try/except/else/finally, raising your own
