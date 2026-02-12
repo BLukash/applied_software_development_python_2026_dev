@@ -88,7 +88,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Loops: for, while, break/continue, range()
     - Practical patterns: counting, searching, early exit
     - Intro to time measurements (very light) to motivate performance later
-- Lecture 3 — Data structures + "Pythonic" patterns
+- Lecture 3 — Data structures + "Pythonic" patterns + Functions
     Topics
     - Collections deep dive: list, tuple, dict, set
     - How collections are stored in memory deep dive - with images from the web
