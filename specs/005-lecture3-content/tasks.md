@@ -29,10 +29,10 @@ lectures/03-data-structures/
 
 **Purpose**: Create directory structure, notebook skeleton, and perform contextual analysis of previous lectures
 
-- [ ] T001 Create directory structure: `lectures/03-data-structures/`, `lectures/03-data-structures/assets/diagrams/`, `lectures/03-data-structures/assets/memes/`
-- [ ] T002 Read and analyze Lecture 2 in full detail at `lectures/02-core-mechanics/lecture-02.ipynb` — document tone patterns, recurring phrases, analogies used, examples given, and cross-reference opportunities per constitution requirement III
-- [ ] T003 Briefly review Lecture 1 at `lectures/01-python-intro/lecture-01.ipynb` — skim headings, note content already covered to avoid duplication
-- [ ] T004 Create notebook skeleton in `lectures/03-data-structures/lecture-03.ipynb` with header cell (Лекція 3, title, date, prerequisites), learning objectives cell (5 objectives from data-model.md), and empty section headers for all 10 sections
+- [X] T001 Create directory structure: `lectures/03-data-structures/`, `lectures/03-data-structures/assets/diagrams/`, `lectures/03-data-structures/assets/memes/`
+- [X] T002 Read and analyze Lecture 2 in full detail at `lectures/02-core-mechanics/lecture-02.ipynb` — document tone patterns, recurring phrases, analogies used, examples given, and cross-reference opportunities per constitution requirement III
+- [X] T003 Briefly review Lecture 1 at `lectures/01-python-intro/lecture-01.ipynb` — skim headings, note content already covered to avoid duplication
+- [X] T004 Create notebook skeleton in `lectures/03-data-structures/lecture-03.ipynb` with header cell (Лекція 3, title, date, prerequisites), learning objectives cell (5 objectives from data-model.md), and empty section headers for all 10 sections
 
 **Checkpoint**: Notebook skeleton exists with header, learning objectives, and section placeholders. Contextual analysis complete.
 
@@ -42,11 +42,11 @@ lectures/03-data-structures/
 
 **Purpose**: Prepare assets and cross-cutting content that multiple user stories depend on
 
-- [ ] T005 [P] Source or create Meme 1 (data structure choice meme) and save to `lectures/03-data-structures/assets/memes/collections-meme.png` — see research.md R4 for concepts
-- [ ] T006 [P] Source or create Meme 2 (comprehension readability meme) and save to `lectures/03-data-structures/assets/memes/comprehensions-meme.png` — see research.md R4 for concepts
-- [ ] T007 [P] Source or create diagram: list internal memory structure (pointer array with over-allocation) and save to `lectures/03-data-structures/assets/diagrams/list-memory.png` — see research.md R1 for sources (Laurent Luce, Real Python); generate with matplotlib if no internet source found
-- [ ] T008 [P] Source or create diagram: tuple internal memory structure (fixed pointer array) and save to `lectures/03-data-structures/assets/diagrams/tuple-memory.png` — compare with list diagram; generate with matplotlib if needed
-- [ ] T009 [P] Source or create diagram: dict/set hash table concept (keys → hash → slots → values) and save to `lectures/03-data-structures/assets/diagrams/dict-hashtable.png` — see research.md R1/R2 for approach
+- [X] T005 [P] Source or create Meme 1 (data structure choice meme) and save to `lectures/03-data-structures/assets/memes/collections-meme.png` — see research.md R4 for concepts
+- [X] T006 [P] Source or create Meme 2 (comprehension readability meme) and save to `lectures/03-data-structures/assets/memes/comprehensions-meme.png` — see research.md R4 for concepts
+- [X] T007 [P] Source or create diagram: list internal memory structure (pointer array with over-allocation) and save to `lectures/03-data-structures/assets/diagrams/list-memory.png` — see research.md R1 for sources (Laurent Luce, Real Python); generate with matplotlib if no internet source found
+- [X] T008 [P] Source or create diagram: tuple internal memory structure (fixed pointer array) and save to `lectures/03-data-structures/assets/diagrams/tuple-memory.png` — compare with list diagram; generate with matplotlib if needed
+- [X] T009 [P] Source or create diagram: dict/set hash table concept (keys → hash → slots → values) and save to `lectures/03-data-structures/assets/diagrams/dict-hashtable.png` — see research.md R1/R2 for approach
 
 **Checkpoint**: All 2 memes and 3+ diagrams ready in assets folder with proper attribution.
 
@@ -60,13 +60,13 @@ lectures/03-data-structures/
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Write Section 1.1 (Списки / Lists) in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with Ukrainian explanation + English terms in parentheses, followed by code cells: (1) list creation and indexing with positive/negative indices, (2) slicing with start:stop:step variations including [::-1], (3) .append() vs .extend() comparison showing different results, (4) modifying list while iterating — the bug and the fix using copy, (5) .sort() vs sorted() comparison. Include cross-reference to Lecture 2's brief collection introduction. Cover FR-001, FR-006.
-- [ ] T011 [US1] Write Section 1.2 (Кортежі / Tuples) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) tuple creation with and without parentheses, (2) single-element tuple gotcha (x,) vs (x), (3) tuple unpacking, (4) immutability enforcement attempt (TypeError), (5) brief namedtuple mention as preview. Cover FR-002.
-- [ ] T012 [US1] Write Section 1.3 (Словники / Dicts) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) dict creation (literal, dict(), from zip preview), (2) bracket notation vs .get() with default showing KeyError avoidance, (3) .update(), .pop(), .setdefault() examples, (4) iteration with .keys(), .values(), .items(), (5) key hashability requirement + {} creates empty dict not set pitfall. Cover FR-003.
-- [ ] T013 [US1] Write Section 1.4 (Множини / Sets) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) set creation (set() and {a,b,c}), (2) deduplication example, (3) .add(), .discard(), .remove(), (4) set operations: | & - ^ with examples, (5) membership check x in my_set. Cover FR-004.
-- [ ] T014 [US1] Write Section 1.5 (Порівняльна таблиця) in `lectures/03-data-structures/lecture-03.ipynb` — markdown table comparing all 4 collection types (ordered, mutable, duplicates, use case) per data-model.md. Insert Meme 1 image from assets/memes/collections-meme.png after the table. Cover FR-005.
-- [ ] T015 [US1] Write Section 3 (Індексація, зрізи та вкладені структури) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) advanced slicing with step numbers[::2], (2) slice assignment numbers[1:3] = [10, 20, 30], (3) nested structure: list of student dicts, (4) accessing nested: students[0]["name"], (5) membership checks: `in` for list, dict (keys), set. Cover FR-006, FR-007, FR-027.
-- [ ] T016 [US1] Write common pitfalls subsection within Section 1 in `lectures/03-data-structures/lecture-03.ipynb` — code cells demonstrating: (1) .append() vs .extend() side by side, (2) modifying list during iteration, (3) unhashable dict key attempt (TypeError), (4) {} is empty dict not empty set. Cover FR-008.
+- [X] T010 [US1] Write Section 1.1 (Списки / Lists) in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with Ukrainian explanation + English terms in parentheses, followed by code cells: (1) list creation and indexing with positive/negative indices, (2) slicing with start:stop:step variations including [::-1], (3) .append() vs .extend() comparison showing different results, (4) modifying list while iterating — the bug and the fix using copy, (5) .sort() vs sorted() comparison. Include cross-reference to Lecture 2's brief collection introduction. Cover FR-001, FR-006.
+- [X] T011 [US1] Write Section 1.2 (Кортежі / Tuples) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) tuple creation with and without parentheses, (2) single-element tuple gotcha (x,) vs (x), (3) tuple unpacking, (4) immutability enforcement attempt (TypeError), (5) brief namedtuple mention as preview. Cover FR-002.
+- [X] T012 [US1] Write Section 1.3 (Словники / Dicts) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) dict creation (literal, dict(), from zip preview), (2) bracket notation vs .get() with default showing KeyError avoidance, (3) .update(), .pop(), .setdefault() examples, (4) iteration with .keys(), .values(), .items(), (5) key hashability requirement + {} creates empty dict not set pitfall. Cover FR-003.
+- [X] T013 [US1] Write Section 1.4 (Множини / Sets) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) set creation (set() and {a,b,c}), (2) deduplication example, (3) .add(), .discard(), .remove(), (4) set operations: | & - ^ with examples, (5) membership check x in my_set. Cover FR-004.
+- [X] T014 [US1] Write Section 1.5 (Порівняльна таблиця) in `lectures/03-data-structures/lecture-03.ipynb` — markdown table comparing all 4 collection types (ordered, mutable, duplicates, use case) per data-model.md. Insert Meme 1 image from assets/memes/collections-meme.png after the table. Cover FR-005.
+- [X] T015 [US1] Write Section 3 (Індексація, зрізи та вкладені структури) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) advanced slicing with step numbers[::2], (2) slice assignment numbers[1:3] = [10, 20, 30], (3) nested structure: list of student dicts, (4) accessing nested: students[0]["name"], (5) membership checks: `in` for list, dict (keys), set. Cover FR-006, FR-007, FR-027.
+- [X] T016 [US1] Write common pitfalls subsection within Section 1 in `lectures/03-data-structures/lecture-03.ipynb` — code cells demonstrating: (1) .append() vs .extend() side by side, (2) modifying list during iteration, (3) unhashable dict key attempt (TypeError), (4) {} is empty dict not empty set. Cover FR-008.
 
 **Checkpoint**: Sections 1 and 3 complete. Student can work with all 4 collection types including indexing, slicing, nested structures.
 
@@ -80,9 +80,9 @@ lectures/03-data-structures/
 
 ### Implementation for User Story 2
 
-- [ ] T017 [US2] Write Section 4 (Ітераційні патерни) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) enumerate() with numbered output, (2) enumerate(items, 1) with custom start, (3) zip() for parallel iteration, (4) zip() for dict creation dict(zip(keys, values)), (5) zip() with unequal-length edge case. Cover FR-009, FR-010.
-- [ ] T018 [US2] Write Section 5 (Comprehensions) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) simple list comprehension (squares), (2) filtered list comprehension (even numbers), (3) transforming comprehension (uppercase strings), (4) dict comprehension (word lengths), (5) set comprehension (unique first letters), (6) anti-pattern: overly nested comprehension with loop rewrite equivalent. Show loop version FIRST then comprehension. Cover FR-011, FR-012, FR-013.
-- [ ] T019 [US2] Write comprehension readability guidelines subsection in Section 5 of `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with Ukrainian text explaining when to use comprehensions vs loops using "one sentence rule" from research.md R3. Insert Meme 2 image from assets/memes/comprehensions-meme.png. Cover FR-014.
+- [X] T017 [US2] Write Section 4 (Ітераційні патерни) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) enumerate() with numbered output, (2) enumerate(items, 1) with custom start, (3) zip() for parallel iteration, (4) zip() for dict creation dict(zip(keys, values)), (5) zip() with unequal-length edge case. Cover FR-009, FR-010.
+- [X] T018 [US2] Write Section 5 (Comprehensions) in `lectures/03-data-structures/lecture-03.ipynb` — markdown + code cells: (1) simple list comprehension (squares), (2) filtered list comprehension (even numbers), (3) transforming comprehension (uppercase strings), (4) dict comprehension (word lengths), (5) set comprehension (unique first letters), (6) anti-pattern: overly nested comprehension with loop rewrite equivalent. Show loop version FIRST then comprehension. Cover FR-011, FR-012, FR-013.
+- [X] T019 [US2] Write comprehension readability guidelines subsection in Section 5 of `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with Ukrainian text explaining when to use comprehensions vs loops using "one sentence rule" from research.md R3. Insert Meme 2 image from assets/memes/comprehensions-meme.png. Cover FR-014.
 
 **Checkpoint**: Sections 4-5 complete. Student can use enumerate, zip, and all comprehension types with readability awareness.
 
@@ -96,8 +96,8 @@ lectures/03-data-structures/
 
 ### Implementation for User Story 3
 
-- [ ] T020 [US3] Write Section 7 (Вступ до функцій) in `lectures/03-data-structures/lecture-03.ipynb` — markdown introducing WHY functions (DRY principle, organization, reusability) + code cells: (1) basic function def greet(name), (2) function with default argument def area(width, height=1), (3) multiple return values via tuple def min_max(numbers), (4) brief docstring example (one-line format). Cross-reference Lecture 2's mutable default argument but do NOT re-explain. Cover FR-018, FR-019.
-- [ ] T021 [US3] Write *args and **kwargs subsection in Section 7 of `lectures/03-data-structures/lecture-03.ipynb` — code cells: (1) *args example def total(*numbers): return sum(numbers), (2) **kwargs example def build_profile(**info): return info, (3) combining positional + *args + keyword: def log(message, *tags, level="INFO"). Cover FR-020.
+- [X] T020 [US3] Write Section 7 (Вступ до функцій) in `lectures/03-data-structures/lecture-03.ipynb` — markdown introducing WHY functions (DRY principle, organization, reusability) + code cells: (1) basic function def greet(name), (2) function with default argument def area(width, height=1), (3) multiple return values via tuple def min_max(numbers), (4) brief docstring example (one-line format). Cross-reference Lecture 2's mutable default argument but do NOT re-explain. Cover FR-018, FR-019.
+- [X] T021 [US3] Write *args and **kwargs subsection in Section 7 of `lectures/03-data-structures/lecture-03.ipynb` — code cells: (1) *args example def total(*numbers): return sum(numbers), (2) **kwargs example def build_profile(**info): return info, (3) combining positional + *args + keyword: def log(message, *tags, level="INFO"). Cover FR-020.
 
 **Checkpoint**: Section 7 complete. Student can define and use functions with all parameter types.
 
@@ -111,7 +111,7 @@ lectures/03-data-structures/
 
 ### Implementation for User Story 4
 
-- [ ] T022 [US4] Write Section 2 (Як колекції зберігаються в пам'яті) in `lectures/03-data-structures/lecture-03.ipynb` — markdown with Ukrainian explanation + insert 3 diagrams from assets/diagrams/ (list-memory.png, tuple-memory.png, dict-hashtable.png) with attribution. Add code cell with sys.getsizeof() comparison for list, tuple, dict, set. Cross-reference Lecture 2's memory model section. Cover FR-017.
+- [X] T022 [US4] Write Section 2 (Як колекції зберігаються в пам'яті) in `lectures/03-data-structures/lecture-03.ipynb` — markdown with Ukrainian explanation + insert 3 diagrams from assets/diagrams/ (list-memory.png, tuple-memory.png, dict-hashtable.png) with attribution. Add code cell with sys.getsizeof() comparison for list, tuple, dict, set. Cross-reference Lecture 2's memory model section. Cover FR-017.
 
 **Checkpoint**: Section 2 complete with all diagrams and memory comparison code.
 
@@ -125,7 +125,7 @@ lectures/03-data-structures/
 
 ### Implementation for User Story 5
 
-- [ ] T023 [US5] Write Section 6 (Складність операцій — Інтуїція) in `lectures/03-data-structures/lecture-03.ipynb` — markdown with locker room analogy for hash tables (see research.md R2) + code cells: (1) hash() demonstration on strings and integers, (2) timed comparison of `in` on list vs set with 100,000 elements using time.perf_counter() (see research.md R2 for exact code), (3) real scenario: checking duplicate usernames with set. Cross-reference Lecture 2's timing section. Cover FR-015, FR-016.
+- [X] T023 [US5] Write Section 6 (Складність операцій — Інтуїція) in `lectures/03-data-structures/lecture-03.ipynb` — markdown with locker room analogy for hash tables (see research.md R2) + code cells: (1) hash() demonstration on strings and integers, (2) timed comparison of `in` on list vs set with 100,000 elements using time.perf_counter() (see research.md R2 for exact code), (3) real scenario: checking duplicate usernames with set. Cross-reference Lecture 2's timing section. Cover FR-015, FR-016.
 
 **Checkpoint**: Section 6 complete. Student can explain O(1) vs O(n) and choose appropriate data structures.
 
@@ -139,9 +139,9 @@ lectures/03-data-structures/
 
 ### Implementation for User Story 6
 
-- [ ] T024 [US6] Write Exercise 1 (Collection Operations) in Section 8 of `lectures/03-data-structures/lecture-03.ipynb` — markdown with task description (list of student dicts: extract names, filter by grade, create name→grade dict) + starter code cell + hidden solution cell. Cover FR-022 (exercise 1 of 2).
-- [ ] T025 [US6] Write Exercise 2 (Data Structure Choice) in Section 8 of `lectures/03-data-structures/lecture-03.ipynb` — markdown with scenarios (fast membership check, ordered sequence, key-value mapping) + starter code cell + hidden solution cell. Cover FR-022 (exercise 2 of 2).
-- [ ] T026 [US6] Write Section 9 (Міні-проєкт — Парсинг логів) in `lectures/03-data-structures/lecture-03.ipynb` — markdown with task description + hardcoded log data string (from research.md R6) + step-by-step instructions (parse_log_line, count_frequencies, top_requests) + starter code with TODO comments + hidden solution cell using research.md R6 expected solution. Must use at least one comprehension, enumerate, and custom functions. Cover FR-021.
+- [X] T024 [US6] Write Exercise 1 (Collection Operations) in Section 8 of `lectures/03-data-structures/lecture-03.ipynb` — markdown with task description (list of student dicts: extract names, filter by grade, create name→grade dict) + starter code cell + hidden solution cell. Cover FR-022 (exercise 1 of 2).
+- [X] T025 [US6] Write Exercise 2 (Data Structure Choice) in Section 8 of `lectures/03-data-structures/lecture-03.ipynb` — markdown with scenarios (fast membership check, ordered sequence, key-value mapping) + starter code cell + hidden solution cell. Cover FR-022 (exercise 2 of 2).
+- [X] T026 [US6] Write Section 9 (Міні-проєкт — Парсинг логів) in `lectures/03-data-structures/lecture-03.ipynb` — markdown with task description + hardcoded log data string (from research.md R6) + step-by-step instructions (parse_log_line, count_frequencies, top_requests) + starter code with TODO comments + hidden solution cell using research.md R6 expected solution. Must use at least one comprehension, enumerate, and custom functions. Cover FR-021.
 
 **Checkpoint**: Sections 8-9 complete. All exercises and mini-project have starter code and hidden solutions.
 
@@ -151,14 +151,14 @@ lectures/03-data-structures/
 
 **Purpose**: Wrap-up sections, final quality validation, and cross-cutting improvements
 
-- [ ] T027 Write Section 10 summary in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with "Що ми вивчили сьогодні" bullet list (use checkmarks sparingly per constitution) covering all 7 topics from data-model.md summary section
-- [ ] T028 Write "Що далі?" (What's Next) section in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell previewing Lecture 4 topics (functions deep dive, lambda, scope, exceptions, modules, type hints) + homework assignments (4 items from data-model.md)
-- [ ] T029 Write References section in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with categorized links: Official Documentation (6 links), Tutorials (5 Real Python links), Deep Dives (2 links) from data-model.md references. Verify no Russian-language resources per constitution.
-- [ ] T030 Review entire notebook for content duplication with Lectures 1-2 — verify FR-025 compliance: no re-explanation of basic types, names/objects, mutability principle, control flow, truthiness, timing basics. Ensure only cross-references, not repetitions.
-- [ ] T031 Verify all cross-references to Lectures 1-2 are present and use consistent notation — check that each section opening connects to previous material per spec contextual analysis and FR-026
-- [ ] T032 Run full notebook validation: Kernel > Restart & Run All in `lectures/03-data-structures/lecture-03.ipynb` — verify all code cells execute without errors in Python 3.11+ per FR-023
-- [ ] T033 Verify constitution compliance in `lectures/03-data-structures/lecture-03.ipynb` — checklist: (1) 5 learning objectives at start, (2) 15+ runnable code examples, (3) 2 exercises with hidden solutions, (4) mini parsing task with hidden solution, (5) 2 memes loaded correctly, (6) 3+ diagrams loaded correctly, (7) Ukrainian text with English terms in parentheses, (8) summary section, (9) What's Next section, (10) references section, (11) icons/emojis used sparingly
-- [ ] T034 Verify timing: estimate lecture content fits within 1.5 hours — review time allocation per data-model.md (~130 min total) and adjust sections if needed per SC-008
+- [X] T027 Write Section 10 summary in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with "Що ми вивчили сьогодні" bullet list (use checkmarks sparingly per constitution) covering all 7 topics from data-model.md summary section
+- [X] T028 Write "Що далі?" (What's Next) section in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell previewing Lecture 4 topics (functions deep dive, lambda, scope, exceptions, modules, type hints) + homework assignments (4 items from data-model.md)
+- [X] T029 Write References section in `lectures/03-data-structures/lecture-03.ipynb` — markdown cell with categorized links: Official Documentation (6 links), Tutorials (5 Real Python links), Deep Dives (2 links) from data-model.md references. Verify no Russian-language resources per constitution.
+- [X] T030 Review entire notebook for content duplication with Lectures 1-2 — verify FR-025 compliance: no re-explanation of basic types, names/objects, mutability principle, control flow, truthiness, timing basics. Ensure only cross-references, not repetitions.
+- [X] T031 Verify all cross-references to Lectures 1-2 are present and use consistent notation — check that each section opening connects to previous material per spec contextual analysis and FR-026
+- [X] T032 Run full notebook validation: Kernel > Restart & Run All in `lectures/03-data-structures/lecture-03.ipynb` — verify all code cells execute without errors in Python 3.11+ per FR-023
+- [X] T033 Verify constitution compliance in `lectures/03-data-structures/lecture-03.ipynb` — checklist: (1) 5 learning objectives at start, (2) 15+ runnable code examples, (3) 2 exercises with hidden solutions, (4) mini parsing task with hidden solution, (5) 2 memes loaded correctly, (6) 3+ diagrams loaded correctly, (7) Ukrainian text with English terms in parentheses, (8) summary section, (9) What's Next section, (10) references section, (11) icons/emojis used sparingly
+- [X] T034 Verify timing: estimate lecture content fits within 1.5 hours — review time allocation per data-model.md (~130 min total) and adjust sections if needed per SC-008
 
 **Checkpoint**: Lecture 3 complete, validated, and ready for human review.
 
