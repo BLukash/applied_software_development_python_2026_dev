@@ -99,19 +99,21 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Complexity intuition: lookup in dict/set vs list scan
     - Intro to functions: parameters, return, defaults, args/kwargs
     - Mini parsing task (e.g., parse logs / compute frequency table)
-- Lecture 4 — Functions + modules + errors
+- Lecture 4 — Functions (continue) + modules + errors + intro to OOP
     Topics
     - Functions deep dive, lambda functions, functions as parameters. sorting and keys. map, reduce, filter. lambda functions. xranges, iterators and generators.
-    - Scope: local/global, closures (light)
+    - Scope: local/global, closures (need nice deep dive here with memes and visualizations)
     - Docstrings and readable APIs (PEP 257 style)
     - Exceptions: try/except/else/finally, raising your own
     - Basic debugging (breakpoints) + minimal logging (logging)
     - Modules & imports: import, from x import y, package layout
     - Building a tiny reusable module (e.g., utils/validators.py)
     - Type hints intro: list[int], dict[str, int], Optional
-- Lecture 5 — OOP in Python (focused) + files/JSON/CSV
+    - Basics of OOP on Python, class definitions, encapsulation, polymorphism, inheritance, abstraction principles in Python
+    - Classes in Python vs C#/Java/C++ mindset: simplicity + conventions
+- Lecture 5 — OOP in Python (in depth) + files/JSON/CSV
     Topics
-    - Classes vs C#/Java/C++ mindset: simplicity + conventions
+    - Classes vs C#/Java/C++ mindset deep dive
     - Attributes, methods, __init__, instance vs class vars
     - Inheritance (only what’s needed), composition > inheritance
     - @dataclass: why it matters, defaults, immutability option
@@ -124,7 +126,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
 - Lecture 6 — REST + FastAPI fundamentals (project bootstrap)
     Topics
     - HTTP essentials: methods, status codes, headers, body
-    - REST principles + CRUD mapping
+    - REST principles (accent on idempotency) + CRUD mapping
     - example of simple http server with Python builtin packages
     - FastAPI basics: app, routers, endpoints
     - Request/response models with Pydantic
