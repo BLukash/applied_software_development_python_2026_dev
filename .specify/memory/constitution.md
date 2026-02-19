@@ -2,16 +2,16 @@
 ================================================================================
 SYNC IMPACT REPORT
 ================================================================================
-Version change: 1.0.1 → 1.1.0 (MINOR)
+Version change: 1.1.0 → 1.2.0 (MINOR)
 
 Modified principles:
-- III. Progressive Skill Building: Added cross-lecture consistency requirement
-
-Added sections:
-- Phase 2: Content Creation: Added "Step 0 - Contextual Analysis" for previous lecture review
+- III. Progressive Skill Building: Restructured Lecture 4 and Lecture 5 topics
 
 Modified sections:
-- Development Workflow: Enhanced with mandatory lecture analysis before content creation
+- Lecture 4: Removed all OOP topics (title + 2 topic lines). Now covers only
+  Functions (continued) + Modules + Errors + Debugging
+- Lecture 5: Absorbed OOP intro topics from Lecture 4. Now covers full OOP
+  (from basics through advanced) + files/JSON/CSV
 
 Removed sections: None
 
@@ -22,6 +22,7 @@ Templates requiring updates:
 - .specify/templates/commands/*.md: N/A (no command templates exist)
 
 Follow-up TODOs:
+- Update specs/006-lecture4-content/ artifacts to remove OOP sections
 - Review existing lecture content for excessive icon usage (carried from 1.0.1)
 ================================================================================
 -->
@@ -99,7 +100,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Complexity intuition: lookup in dict/set vs list scan
     - Intro to functions: parameters, return, defaults, args/kwargs
     - Mini parsing task (e.g., parse logs / compute frequency table)
-- Lecture 4 — Functions (continue) + modules + errors + intro to OOP
+- Lecture 4 — Functions (continue) + modules + errors
     Topics
     - Functions deep dive, lambda functions, functions as parameters. sorting and keys. map, reduce, filter. lambda functions. xranges, iterators and generators.
     - Scope: local/global, closures (need nice deep dive here with memes and visualizations)
@@ -109,13 +110,13 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Modules & imports: import, from x import y, package layout
     - Building a tiny reusable module (e.g., utils/validators.py)
     - Type hints intro: list[int], dict[str, int], Optional
-    - Basics of OOP on Python, class definitions, encapsulation, polymorphism, inheritance, abstraction principles in Python
-    - Classes in Python vs C#/Java/C++ mindset: simplicity + conventions
-- Lecture 5 — OOP in Python (in depth) + files/JSON/CSV
+- Lecture 5 — OOP in Python (full coverage) + files/JSON/CSV
     Topics
-    - Classes vs C#/Java/C++ mindset deep dive
-    - Attributes, methods, __init__, instance vs class vars
-    - Inheritance (only what’s needed), composition > inheritance
+    - Basics of OOP on Python: why OOP, class definitions, __init__, self
+    - Encapsulation, polymorphism, inheritance, abstraction principles in Python
+    - Classes in Python vs C#/Java/C++ mindset: simplicity + conventions
+    - Attributes, methods, instance vs class vars
+    - Inheritance (only what's needed), composition > inheritance
     - @dataclass: why it matters, defaults, immutability option
     - Common dunder (magic) methods: __repr__, __str__
     - File I/O: open(), context managers, encoding (utf-8)
@@ -370,4 +371,4 @@ This constitution establishes binding principles for the "Applied Software Devel
 - **MINOR**: New sections, significant content additions
 - **PATCH**: Clarifications, typo fixes, minor updates
 
-**Version**: 1.1.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-01-31
+**Version**: 1.2.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-02-18
