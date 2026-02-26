@@ -110,20 +110,20 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Modules & imports: import, from x import y, package layout
     - Building a tiny reusable module (e.g., utils/validators.py)
     - Type hints intro: list[int], dict[str, int], Optional
-- Lecture 5 — OOP in Python (full coverage) + files/JSON/CSV
+- Lecture 5 — OOP in Python and files/JSON/CSV
     Topics
     - Basics of OOP on Python: why OOP, class definitions, __init__, self
     - Encapsulation, polymorphism, inheritance, abstraction principles in Python
-    - Classes in Python vs C#/Java/C++ mindset: simplicity + conventions
     - Attributes, methods, instance vs class vars
-    - Inheritance (only what's needed), composition > inheritance
+    - Encapsulation, private, protected, public in python
+    - Inheritance, multiple inheritance, composition > inheritance
+    - Common dunder (magic) methods: __repr__, __str__,  `__eq__`, etc.
     - @dataclass: why it matters, defaults, immutability option
-    - Common dunder (magic) methods: __repr__, __str__
+    - Classes in Python vs C#/Java/C++ mindset: simplicity + conventions
+    - Examples of useful and interesting Python class usages, tips and quirks
     - File I/O: open(), context managers, encoding (utf-8)
     - JSON: json.load/dump, schema-like thinking
     - CSV: csv module + pandas teaser
-    - Prep for project: define data model for your future API entities
-    At the end of Lecture 5 you have the “domain model” ready (dataclasses / schemas / file formats).
 - Lecture 6 — REST + FastAPI fundamentals (project bootstrap)
     Topics
     - HTTP essentials: methods, status codes, headers, body
@@ -137,7 +137,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Project structure: /app, routers, schemas, services
     - Tooling intro: ruff, black (format/lint workflow)
     - Project increment:
-    Create API skeleton + CRUD in-memory storage for Note / Document
+    Create API skeleton + CRUD in-memory storage for Note / Document, start with data model definition
 - Lecture 7 — Async + HTTP clients + quality workflow
     Topics
     - Async intuition: event loop, async def, await
