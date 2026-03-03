@@ -2,17 +2,28 @@
 ================================================================================
 SYNC IMPACT REPORT
 ================================================================================
-Version change: 1.1.0 → 1.2.0 (MINOR)
+Version change: 1.2.0 → 1.3.0 (MINOR)
 
 Modified principles:
-- III. Progressive Skill Building: Restructured Lecture 4 and Lecture 5 topics
+- III. Progressive Skill Building: Restructured Lecture 6 and Lecture 7 topics
 
 Modified sections:
-- Lecture 4: Removed all OOP topics (title + 2 topic lines). Now covers only
-  Functions (continued) + Modules + Errors + Debugging
-- Lecture 5: Absorbed OOP intro topics from Lecture 4. Now covers full OOP
-  (from basics through advanced) + files/JSON/CSV
+- Lecture 6: Title changed from "REST + FastAPI fundamentals (project bootstrap)"
+  to "Web Fundamentals & FastAPI: API Skeleton + MCP Introduction".
+  Added: web server basics (client/server, request-response, ports),
+  path vs query distinction, consistent error payload shape, MCP intro
+  (concept only: host/client/server, tools/resources/prompts + keep-mcp example).
+  Removed: explicit "Project increment" section (project bootstrap is now
+  a standalone topic).
+- Lecture 7: Title changed from "Async + HTTP clients + quality workflow"
+  to "Python Integrations: Async + HTTPX + Testing + Practical MCP (Google Keep)".
+  Added: MCP practical integration (client wrapper + wire endpoints to keep-mcp),
+  safety mindset (safe mode vs unsafe mode), mocking MCP calls in tests,
+  minimal settings object for config.
+  Removed: "Background tasks (FastAPI basics)" topic, explicit
+  "Project increment" section.
 
+Added sections: None
 Removed sections: None
 
 Templates requiring updates:
@@ -22,7 +33,8 @@ Templates requiring updates:
 - .specify/templates/commands/*.md: N/A (no command templates exist)
 
 Follow-up TODOs:
-- Update specs/006-lecture4-content/ artifacts to remove OOP sections
+- Create spec for Lecture 6 content reflecting new MCP intro topics
+- Create spec for Lecture 7 content reflecting practical MCP integration
 - Review existing lecture content for excessive icon usage (carried from 1.0.1)
 ================================================================================
 -->
@@ -124,31 +136,27 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - File I/O: open(), context managers, encoding (utf-8)
     - JSON: json.load/dump, schema-like thinking
     - CSV: csv module + pandas teaser
-- Lecture 6 — REST + FastAPI fundamentals (project bootstrap)
+- Lecture 6 — Web Fundamentals and FastAPI: API Skeleton + MCP Introduction
     Topics
-    - HTTP essentials: methods, status codes, headers, body
-    - REST principles (accent on idempotency) + CRUD mapping
-    - example of simple http server with Python builtin packages
-    - FastAPI basics: app, routers, endpoints
-    - Request/response models with Pydantic
-    - Validation + error responses
-    - Auto docs: Swagger / OpenAPI
-    - Running dev server: uvicorn
-    - Project structure: /app, routers, schemas, services
-    - Tooling intro: ruff, black (format/lint workflow)
-    - Project increment:
-    Create API skeleton + CRUD in-memory storage for Note / Document, start with data model definition
-- Lecture 7 — Async + HTTP clients + quality workflow
+    - Web server basics: client/server, request–response, ports
+    - HTTP essentials: methods, status codes, headers/body, JSON, path vs query
+    - Tiny raw HTTP demo: http.server (motivation only)
+    - REST essentials: resources, CRUD mapping, idempotency, consistent error payload shape
+    - FastAPI basics: app, routers, endpoints, params (path/query/body)
+    - Pydantic schemas: request vs response, validation (422), HTTPException
+    - OpenAPI/Swagger + running with uvicorn
+    - Project bootstrap: uv init/sync, minimal structure (app/routers/schemas/services/clients)
+    - Tooling: ruff + black (how to run)
+    - MCP intro (concept only): host/client/server, tools/resources/prompts + keep-mcp as example (no run)
+- Lecture 7 — Python Web Server Integrations: Async, HTTPX, Testing, Practical MCP
     Topics
-    - Async intuition: event loop, async def, await
-    - httpx (sync/async) for calling external APIs
-    - Background tasks (FastAPI basics)
-    - Environment variables + .env basics
-    - Testing intro (early on purpose): pytest fundamentals, FastAPI TestClient. Arrange–Act–Assert
-    - Code quality workflow: ruff check, ruff format (or black), Minimal pre-commit test run
-    - Project increment:
-    Add: endpoint that calls an external API (example: “quote of the day” / weather)
-    Add: 5–8 tests for API routes
+    - Async essentials: event loop intuition, async/await, why in FastAPI
+    - HTTP client: httpx (sync vs async), timeouts, error handling, JSON parsing
+    - Config basics: .env + env vars + minimal settings object
+    - MCP practical integration: client wrapper module + wire endpoints to keep-mcp tools
+    - Safety mindset: safe mode vs unsafe mode (why defaults matter)
+    - Testing: pytest, FastAPI TestClient, mocking MCP calls, optional integration test flag
+    - Quality workflow: run lint/format/tests locally as a single routine
 - Lecture 8 — Docker + PostgreSQL + API-DB connection
     Topics
     - Why containers: reproducible environment (reminder from prev OS course)
@@ -371,4 +379,4 @@ This constitution establishes binding principles for the "Applied Software Devel
 - **MINOR**: New sections, significant content additions
 - **PATCH**: Clarifications, typo fixes, minor updates
 
-**Version**: 1.2.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-02-18
+**Version**: 1.3.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-03-03
