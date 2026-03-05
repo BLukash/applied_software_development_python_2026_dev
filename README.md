@@ -68,6 +68,19 @@
 - CSV — робота з табличними даними
 - Міні-проект: книга контактів (ООП + файлова персистенція)
 
+### [Лекція 6: Веб-основи та FastAPI](lectures/06-web-fastapi-mcp/lecture-06.ipynb)
+- Основи веб-серверів — клієнт-серверна архітектура, запит-відповідь, порти
+- HTTP-основи — методи (GET/POST/PUT/DELETE), статус-коди, заголовки, JSON
+- Raw HTTP демо — http.server зі стандартної бібліотеки
+- REST — ресурси, CRUD-маппінг, ідемпотентність, структура помилок
+- FastAPI — app, routers, endpoints, path/query/body параметри
+- Pydantic — BaseModel, валідація, request vs response моделі, HTTPException
+- OpenAPI/Swagger — автоматична документація, uvicorn
+- Бутстрап проєкту — uv init/sync, структура app/routers/schemas/services/clients
+- Інструменти якості — ruff + black
+- MCP (Model Context Protocol) — архітектура, три примітиви, keep-mcp приклад
+- [Проєкт: Notes API](lectures/06-web-fastapi-mcp/notes-api/) — FastAPI stub з GET /health, POST /notes/create, POST /notes/search
+
 ## Експериментальний репозиторій
 
 Цей репозиторій є експериментальним — лекції частково створені за допомогою AI-інструментів (Claude Code, SpecKit).

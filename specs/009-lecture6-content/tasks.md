@@ -26,11 +26,11 @@
 
 **Purpose**: Create directory structure and gather all visual/media assets needed across user stories
 
-- [ ] T001 Create lecture directory structure: `lectures/06-web-fastapi-mcp/`, `lectures/06-web-fastapi-mcp/assets/`, `lectures/06-web-fastapi-mcp/assets/memes/`, `lectures/06-web-fastapi-mcp/notes-api/`
-- [ ] T002 [P] Gather web server visual assets: download/save client-server architecture diagram and request-response lifecycle diagram to `lectures/06-web-fastapi-mcp/assets/` (source: MDN SVGs from research.md §1, or generate with matplotlib if URLs unavailable)
-- [ ] T003 [P] Gather HTTP visuals: download/save HTTP request format and HTTP response format diagrams to `lectures/06-web-fastapi-mcp/assets/` (source: MDN SVGs from research.md §1, or generate with matplotlib if URLs unavailable)
-- [ ] T004 [P] Gather MCP architecture visual: download/save MCP architecture diagram to `lectures/06-web-fastapi-mcp/assets/mcp-architecture.png` (source: official MCP diagram from research.md §3, or generate a custom diagram)
-- [ ] T005 [P] Find and save 2 memes: 1 web/API humor meme (for introduction section) and 1 REST or MCP meme (for later section) to `lectures/06-web-fastapi-mcp/assets/memes/`
+- [x] T001 Create lecture directory structure: `lectures/06-web-fastapi-mcp/`, `lectures/06-web-fastapi-mcp/assets/`, `lectures/06-web-fastapi-mcp/assets/memes/`, `lectures/06-web-fastapi-mcp/notes-api/`
+- [x] T002 [P] Gather web server visual assets: download/save client-server architecture diagram and request-response lifecycle diagram to `lectures/06-web-fastapi-mcp/assets/` (source: MDN SVGs from research.md §1, or generate with matplotlib if URLs unavailable)
+- [x] T003 [P] Gather HTTP visuals: download/save HTTP request format and HTTP response format diagrams to `lectures/06-web-fastapi-mcp/assets/` (source: MDN SVGs from research.md §1, or generate with matplotlib if URLs unavailable)
+- [x] T004 [P] Gather MCP architecture visual: download/save MCP architecture diagram to `lectures/06-web-fastapi-mcp/assets/mcp-architecture.png` (source: official MCP diagram from research.md §3, or generate a custom diagram)
+- [x] T005 [P] Find and save 2 memes: 1 web/API humor meme (for introduction section) and 1 REST or MCP meme (for later section) to `lectures/06-web-fastapi-mcp/assets/memes/`
 
 **Checkpoint**: All directories exist and visual assets are ready for embedding in the notebook.
 
@@ -40,8 +40,8 @@
 
 **Purpose**: Analyze previous lectures to ensure tone/style consistency — MUST complete before writing any notebook content
 
-- [ ] T006 Read and analyze Lecture 5 in full detail at `lectures/05-oop-files/lecture-05.ipynb`: document tone patterns, recurring phrases, Ukrainian terminology conventions, exercise format, meme placement, emoji usage, cell ratio, and how @dataclass was introduced (needed for Pydantic bridge)
-- [ ] T007 Skim Lectures 1–4 headings and key examples at `lectures/01-python-intro/lecture-01.ipynb`, `lectures/02-core-mechanics/lecture-02.ipynb`, `lectures/03-data-structures/lecture-03.ipynb`, `lectures/04-functions-modules-errors-oop/lecture-04.ipynb`: note cross-reference opportunities (JSON from L5, modules/imports from L4, functions from L3-4) and content to avoid duplicating
+- [x] T006 Read and analyze Lecture 5 in full detail at `lectures/05-oop-files/lecture-05.ipynb`: document tone patterns, recurring phrases, Ukrainian terminology conventions, exercise format, meme placement, emoji usage, cell ratio, and how @dataclass was introduced (needed for Pydantic bridge)
+- [x] T007 Skim Lectures 1–4 headings and key examples at `lectures/01-python-intro/lecture-01.ipynb`, `lectures/02-core-mechanics/lecture-02.ipynb`, `lectures/03-data-structures/lecture-03.ipynb`, `lectures/04-functions-modules-errors-oop/lecture-04.ipynb`: note cross-reference opportunities (JSON from L5, modules/imports from L4, functions from L3-4) and content to avoid duplicating
 
 **Checkpoint**: Foundation ready — notebook writing can begin. Author has full awareness of prior content, tone, and terminology.
 
@@ -55,17 +55,17 @@
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Create notebook skeleton with header cell (lecture number, title, date), prerequisites section linking to Lectures 1–5 (OOP from L5, modules from L4), and bridge statement ("Your Contact class and JSON skills are the foundation for Pydantic models") in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 0)
-- [ ] T009 [US1] Write learning objectives section with 5 measurable outcomes (web server concepts, HTTP methods/status codes, FastAPI+Pydantic+Swagger, uv+ruff+black, MCP concepts) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 1)
-- [ ] T010 [US1] Write web server basics section: client/server architecture, request-response cycle, ports analogy (IP=building, port=apartment), localhost:8000 explanation — embed 2 visual diagrams from `lectures/06-web-fastapi-mcp/assets/` — include first meme in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 2, FR-002, FR-020)
-- [ ] T011 [US1] Write HTTP essentials section: methods table (GET/POST/PUT/PATCH/DELETE with CRUD/idempotent/safe columns), status codes table (2xx/4xx/5xx with key codes), request/response anatomy, JSON as data format, path vs query params, quick curl usage demo — embed HTTP request/response format visuals in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 3, FR-003, FR-020)
-- [ ] T012 [US1] Write REST essentials section: resources as nouns, CRUD-to-HTTP mapping table, idempotency deep-dive (PUT/DELETE idempotent vs POST not), consistent error payload shape `{detail, error_code}`, good vs bad error response examples (✅/❌) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 5, FR-005)
-- [ ] T013 [US1] Write FastAPI basics section: minimal app creation, @app.get/@app.post progression, path parameters, query parameters, body parameters with Pydantic model, APIRouter + include_router — all with runnable inline code cells in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 6, FR-006)
-- [ ] T014 [US1] Write Pydantic schemas section: BaseModel (bridge from @dataclass — "dataclass on steroids"), request vs response models, field validation (types, min/max_length, defaults), auto 422 demo, HTTPException for custom errors — add Exercise 1 (BookCreate/BookResponse schema with validation + POST endpoint) with hidden solution cell in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 7, FR-007, FR-018)
-- [ ] T015 [US1] Write OpenAPI/Swagger + uvicorn section: auto-generated docs at /docs, screenshot or description of Swagger UI, running with `uvicorn app.main:app --reload`, `--port` flag mention in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 8, FR-008)
-- [ ] T016 [US1] Write project bootstrap section: `uv init notes-api`, `uv add fastapi uvicorn`, `uv add --dev ruff black`, project structure walk-through, create files step-by-step referencing the notes-api/ project, `ruff check .` + `black --check .` demo, final run + curl test commands — add Exercise 2 (add GET /notes/{note_id} endpoint returning hardcoded data or 404) with hidden solution cell in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 9, FR-009, FR-010, FR-018). Depends on T023–T028.
-- [ ] T017 [US1] Write MCP introduction section: problem statement (every AI tool needs custom integrations), "USB-C for AI" analogy, three participants table (Host/Client/Server with examples), three primitives table (Tools/Resources/Prompts with control type), keep-mcp concrete example (CRUD mapping to REST lesson, safety feature, Claude Desktop config JSON snippet — no running), why it matters bridge to Lecture 7 — embed MCP architecture diagram from `lectures/06-web-fastapi-mcp/assets/mcp-architecture.png`, include second meme in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 10, FR-011, FR-019, FR-020)
-- [ ] T018 [US1] Write summary section (key takeaways with ✅ markers), What's Next section (bridge to Lecture 7: async, httpx, MCP integration, testing, quality workflow), and references section (MDN HTTP docs, FastAPI docs, Pydantic docs, MCP official docs, keep-mcp repo, uv docs, ruff docs) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Sections 11–13, FR-022)
+- [x] T008 [US1] Create notebook skeleton with header cell (lecture number, title, date), prerequisites section linking to Lectures 1–5 (OOP from L5, modules from L4), and bridge statement ("Your Contact class and JSON skills are the foundation for Pydantic models") in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 0)
+- [x] T009 [US1] Write learning objectives section with 5 measurable outcomes (web server concepts, HTTP methods/status codes, FastAPI+Pydantic+Swagger, uv+ruff+black, MCP concepts) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 1)
+- [x] T010 [US1] Write web server basics section: client/server architecture, request-response cycle, ports analogy (IP=building, port=apartment), localhost:8000 explanation — embed 2 visual diagrams from `lectures/06-web-fastapi-mcp/assets/` — include first meme in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 2, FR-002, FR-020)
+- [x] T011 [US1] Write HTTP essentials section: methods table (GET/POST/PUT/PATCH/DELETE with CRUD/idempotent/safe columns), status codes table (2xx/4xx/5xx with key codes), request/response anatomy, JSON as data format, path vs query params, quick curl usage demo — embed HTTP request/response format visuals in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 3, FR-003, FR-020)
+- [x] T012 [US1] Write REST essentials section: resources as nouns, CRUD-to-HTTP mapping table, idempotency deep-dive (PUT/DELETE idempotent vs POST not), consistent error payload shape `{detail, error_code}`, good vs bad error response examples (✅/❌) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 5, FR-005)
+- [x] T013 [US1] Write FastAPI basics section: minimal app creation, @app.get/@app.post progression, path parameters, query parameters, body parameters with Pydantic model, APIRouter + include_router — all with runnable inline code cells in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 6, FR-006)
+- [x] T014 [US1] Write Pydantic schemas section: BaseModel (bridge from @dataclass — "dataclass on steroids"), request vs response models, field validation (types, min/max_length, defaults), auto 422 demo, HTTPException for custom errors — add Exercise 1 (BookCreate/BookResponse schema with validation + POST endpoint) with hidden solution cell in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 7, FR-007, FR-018)
+- [x] T015 [US1] Write OpenAPI/Swagger + uvicorn section: auto-generated docs at /docs, screenshot or description of Swagger UI, running with `uvicorn app.main:app --reload`, `--port` flag mention in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 8, FR-008)
+- [x] T016 [US1] Write project bootstrap section: `uv init notes-api`, `uv add fastapi uvicorn`, `uv add --dev ruff black`, project structure walk-through, create files step-by-step referencing the notes-api/ project, `ruff check .` + `black --check .` demo, final run + curl test commands — add Exercise 2 (add GET /notes/{note_id} endpoint returning hardcoded data or 404) with hidden solution cell in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 9, FR-009, FR-010, FR-018). Depends on T023–T028.
+- [x] T017 [US1] Write MCP introduction section: problem statement (every AI tool needs custom integrations), "USB-C for AI" analogy, three participants table (Host/Client/Server with examples), three primitives table (Tools/Resources/Prompts with control type), keep-mcp concrete example (CRUD mapping to REST lesson, safety feature, Claude Desktop config JSON snippet — no running), why it matters bridge to Lecture 7 — embed MCP architecture diagram from `lectures/06-web-fastapi-mcp/assets/mcp-architecture.png`, include second meme in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 10, FR-011, FR-019, FR-020)
+- [x] T018 [US1] Write summary section (key takeaways with ✅ markers), What's Next section (bridge to Lecture 7: async, httpx, MCP integration, testing, quality workflow), and references section (MDN HTTP docs, FastAPI docs, Pydantic docs, MCP official docs, keep-mcp repo, uv docs, ruff docs) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Sections 11–13, FR-022)
 
 **Checkpoint**: Notebook has all 14 sections, Ukrainian text with bilingual terms, 5+ code examples, 2 exercises with solutions, 2+ memes, 3+ diagrams, summary, and references. All code cells execute without errors.
 
@@ -79,16 +79,16 @@
 
 ### Implementation for User Story 2
 
-- [ ] T019 [P] [US2] Create `pyproject.toml` with project metadata (name=notes-api, version=0.1.0, python>=3.13), dependencies (fastapi, uvicorn), and dev dependencies (ruff, black) in `lectures/06-web-fastapi-mcp/notes-api/pyproject.toml`
-- [ ] T020 [P] [US2] Create common Pydantic schemas: `HealthStatus` (status, version) and `ErrorResponse` (detail, error_code) in `lectures/06-web-fastapi-mcp/notes-api/app/schemas/common.py` per data-model.md and contracts/api.yaml
-- [ ] T021 [P] [US2] Create note Pydantic schemas: `NoteCreate` (title, content, tags with validation), `NoteResponse` (id, title, content, tags, created_at), `NoteSearchQuery` (query, tags, limit with min/max), `NoteSearchResult` (results, total) in `lectures/06-web-fastapi-mcp/notes-api/app/schemas/notes.py` per data-model.md and contracts/api.yaml
-- [ ] T022 [P] [US2] Create `__init__.py` files for all packages: `lectures/06-web-fastapi-mcp/notes-api/app/__init__.py`, `app/routers/__init__.py`, `app/schemas/__init__.py`, `app/services/__init__.py`, `app/clients/__init__.py`
-- [ ] T023 [US2] Create health router with GET /health returning 200 + HealthStatus in `lectures/06-web-fastapi-mcp/notes-api/app/routers/health.py` (depends on T020)
-- [ ] T024 [US2] Create notes router with POST /notes/create (returns 201 + hardcoded NoteResponse) and POST /notes/search (returns 200 + empty NoteSearchResult) with consistent error handling via HTTPException in `lectures/06-web-fastapi-mcp/notes-api/app/routers/notes.py` (depends on T020, T021)
-- [ ] T025 [US2] Create FastAPI app entry point: create app instance, include health and notes routers, add custom exception handler for consistent ErrorResponse shape on all 4xx/5xx in `lectures/06-web-fastapi-mcp/notes-api/app/main.py` (depends on T023, T024)
-- [ ] T026 [US2] Run `uv sync` to install dependencies, then verify `uvicorn app.main:app --reload` starts on port 8000 without errors in `lectures/06-web-fastapi-mcp/notes-api/`
-- [ ] T027 [US2] Verify all endpoints: GET /health returns 200, POST /notes/create with valid body returns 201, POST /notes/search returns 200 with empty results, invalid input returns 422 with ErrorResponse shape, /docs shows Swagger UI — test per quickstart.md curl commands
-- [ ] T028 [US2] Run `ruff check .` and `black --check .` in `lectures/06-web-fastapi-mcp/notes-api/` — fix any violations until both pass with zero errors
+- [x] T019 [P] [US2] Create `pyproject.toml` with project metadata (name=notes-api, version=0.1.0, python>=3.13), dependencies (fastapi, uvicorn), and dev dependencies (ruff, black) in `lectures/06-web-fastapi-mcp/notes-api/pyproject.toml`
+- [x] T020 [P] [US2] Create common Pydantic schemas: `HealthStatus` (status, version) and `ErrorResponse` (detail, error_code) in `lectures/06-web-fastapi-mcp/notes-api/app/schemas/common.py` per data-model.md and contracts/api.yaml
+- [x] T021 [P] [US2] Create note Pydantic schemas: `NoteCreate` (title, content, tags with validation), `NoteResponse` (id, title, content, tags, created_at), `NoteSearchQuery` (query, tags, limit with min/max), `NoteSearchResult` (results, total) in `lectures/06-web-fastapi-mcp/notes-api/app/schemas/notes.py` per data-model.md and contracts/api.yaml
+- [x] T022 [P] [US2] Create `__init__.py` files for all packages: `lectures/06-web-fastapi-mcp/notes-api/app/__init__.py`, `app/routers/__init__.py`, `app/schemas/__init__.py`, `app/services/__init__.py`, `app/clients/__init__.py`
+- [x] T023 [US2] Create health router with GET /health returning 200 + HealthStatus in `lectures/06-web-fastapi-mcp/notes-api/app/routers/health.py` (depends on T020)
+- [x] T024 [US2] Create notes router with POST /notes/create (returns 201 + hardcoded NoteResponse) and POST /notes/search (returns 200 + empty NoteSearchResult) with consistent error handling via HTTPException in `lectures/06-web-fastapi-mcp/notes-api/app/routers/notes.py` (depends on T020, T021)
+- [x] T025 [US2] Create FastAPI app entry point: create app instance, include health and notes routers, add custom exception handler for consistent ErrorResponse shape on all 4xx/5xx in `lectures/06-web-fastapi-mcp/notes-api/app/main.py` (depends on T023, T024)
+- [x] T026 [US2] Run `uv sync` to install dependencies, then verify `uvicorn app.main:app --reload` starts on port 8000 without errors in `lectures/06-web-fastapi-mcp/notes-api/`
+- [x] T027 [US2] Verify all endpoints: GET /health returns 200, POST /notes/create with valid body returns 201, POST /notes/search returns 200 with empty results, invalid input returns 422 with ErrorResponse shape, /docs shows Swagger UI — test per quickstart.md curl commands
+- [x] T028 [US2] Run `ruff check .` and `black --check .` in `lectures/06-web-fastapi-mcp/notes-api/` — fix any violations until both pass with zero errors
 
 **Checkpoint**: FastAPI project is fully functional, all endpoints respond correctly, Swagger docs are readable, and code passes linting/formatting.
 
@@ -102,7 +102,7 @@
 
 ### Implementation for User Story 3
 
-- [ ] T029 [US3] Write raw http.server demo section: minimal stdlib demo (http.server.HTTPServer with custom handler), instructions to open browser/use curl, step-by-step explanation of what happens (client connects → sends request → server processes → sends response → connection closes), clear stop instructions (Ctrl+C / kernel interrupt / separate terminal approach), transition statement to FastAPI in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 4, FR-004)
+- [x] T029 [US3] Write raw http.server demo section: minimal stdlib demo (http.server.HTTPServer with custom handler), instructions to open browser/use curl, step-by-step explanation of what happens (client connects → sends request → server processes → sends response → connection closes), clear stop instructions (Ctrl+C / kernel interrupt / separate terminal approach), transition statement to FastAPI in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (Section 4, FR-004)
 
 **Checkpoint**: http.server demo runs, students see raw HTTP cycle, and understand why frameworks exist.
 
@@ -112,12 +112,12 @@
 
 **Purpose**: Final validation and integration across all user stories
 
-- [ ] T030 Review all notebook text for Ukrainian language quality: grammar, bilingual term consistency (English term in parentheses on first use), matching Lecture 5 tone patterns per research.md §6 in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (FR-023)
-- [ ] T031 Verify notebook meets all constitution content requirements: count code examples (need 5+ excluding project), count exercises (need 2+ with solutions), count memes (need 2+), count diagrams (need 3+), verify duration estimate (~110 min target), verify emoji usage is sparse (1-2 per section max) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (FR-017 through FR-020, FR-025)
-- [ ] T032 Run full notebook top-to-bottom in a clean Python 3.13+ kernel: restart kernel, run all cells sequentially, fix any execution errors in `lectures/06-web-fastapi-mcp/lecture-06.ipynb`
-- [ ] T033 [P] Verify all visual assets render correctly in notebook: check that all embedded images (diagrams, memes, MCP architecture) display properly — fix broken paths or missing files in `lectures/06-web-fastapi-mcp/lecture-06.ipynb`
-- [ ] T034 [P] Update README.md with Lecture 6 entry: add "Лекція 6: Веб-основи та FastAPI: API Skeleton + MCP Introduction" with topic bullet list matching constitution, following existing README format in `README.md`
-- [ ] T035 Run quickstart.md full verification checklist: execute all steps from `specs/009-lecture6-content/quickstart.md` in a clean environment — notebook opens, uv sync works, uvicorn starts, all endpoints respond correctly, /docs loads, ruff+black pass
+- [x] T030 Review all notebook text for Ukrainian language quality: grammar, bilingual term consistency (English term in parentheses on first use), matching Lecture 5 tone patterns per research.md §6 in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (FR-023)
+- [x] T031 Verify notebook meets all constitution content requirements: count code examples (need 5+ excluding project), count exercises (need 2+ with solutions), count memes (need 2+), count diagrams (need 3+), verify duration estimate (~110 min target), verify emoji usage is sparse (1-2 per section max) in `lectures/06-web-fastapi-mcp/lecture-06.ipynb` (FR-017 through FR-020, FR-025)
+- [x] T032 Run full notebook top-to-bottom in a clean Python 3.13+ kernel: restart kernel, run all cells sequentially, fix any execution errors in `lectures/06-web-fastapi-mcp/lecture-06.ipynb`
+- [x] T033 [P] Verify all visual assets render correctly in notebook: check that all embedded images (diagrams, memes, MCP architecture) display properly — fix broken paths or missing files in `lectures/06-web-fastapi-mcp/lecture-06.ipynb`
+- [x] T034 [P] Update README.md with Lecture 6 entry: add "Лекція 6: Веб-основи та FastAPI: API Skeleton + MCP Introduction" with topic bullet list matching constitution, following existing README format in `README.md`
+- [x] T035 Run quickstart.md full verification checklist: execute all steps from `specs/009-lecture6-content/quickstart.md` in a clean environment — notebook opens, uv sync works, uvicorn starts, all endpoints respond correctly, /docs loads, ruff+black pass
 
 ---
 
