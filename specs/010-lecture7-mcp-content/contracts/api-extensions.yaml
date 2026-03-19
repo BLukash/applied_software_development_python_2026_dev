@@ -1,0 +1,74 @@
+# Lecture 7 API Extensions to Lecture 6 Notes API
+# No new endpoints are added — Lecture 7 extends the project with:
+# - async awareness (endpoints already async in L6)
+# - config (pydantic-settings)
+# - tests (pytest + TestClient)
+# - quality workflow (Makefile)
+#
+# The existing endpoints from Lecture 6 remain unchanged:
+#   GET  /health          → 200 HealthStatus
+#   POST /notes/create    → 201 NoteResponse
+#   POST /notes/search    → 200 NoteSearchResult
+#
+# MCP integration is a standalone demo (keep-mcp via LLM client),
+# not wired into the FastAPI project.
+
+# New project files added in Lecture 7:
+
+new_files:
+  - path: app/config.py
+    purpose: Settings object using pydantic-settings
+    schema:
+      class: Settings
+      fields:
+        app_name:
+          type: str
+          default: "Notes API"
+        debug:
+          type: bool
+          default: false
+        port:
+          type: int
+          default: 8000
+      config:
+        env_file: ".env"
+
+  - path: tests/test_health.py
+    purpose: Health endpoint test
+    tests:
+      - name: test_health_returns_200
+        method: GET
+        path: /health
+        expected_status: 200
+
+  - path: tests/test_notes.py
+    purpose: Notes endpoint tests + monkeypatch example
+    tests:
+      - name: test_create_note_returns_201
+        method: POST
+        path: /notes/create
+        body: {"title": "Test", "content": "Body", "tags": []}
+        expected_status: 201
+      - name: test_create_note_invalid_returns_422
+        method: POST
+        path: /notes/create
+        body: {}
+        expected_status: 422
+      - name: test_search_notes_returns_200
+        method: POST
+        path: /notes/search
+        body: {"query": "test"}
+        expected_status: 200
+
+  - path: Makefile
+    purpose: Quality workflow
+    targets:
+      check: "ruff check . && black --check . && pytest"
+      fix: "ruff check --fix . && black ."
+      test: "pytest"
+
+modified_files:
+  - path: pyproject.toml
+    changes:
+      - add_dependency: pydantic-settings
+      - add_dev_dependency: pytest
