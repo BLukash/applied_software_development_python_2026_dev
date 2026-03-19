@@ -16,7 +16,7 @@
 ## Path Conventions
 
 - **Notebook**: `lectures/07-integrations-async-mcp/lecture-07.ipynb`
-- **Project**: `lectures/07-integrations-async-mcp/notes-api/`
+- **Project**: `project/notes-api/` (shared across lectures)
 - **Assets**: `lectures/07-integrations-async-mcp/assets/`
 - **Specs**: `specs/010-lecture7-mcp-content/`
 
@@ -26,9 +26,9 @@
 
 **Purpose**: Create lecture directory structure, copy Lecture 6 project, prepare assets folder
 
-- [ ] T001 Create lecture directory structure: `lectures/07-integrations-async-mcp/`, `lectures/07-integrations-async-mcp/assets/`, `lectures/07-integrations-async-mcp/assets/memes/`
-- [ ] T002 Copy Lecture 6 FastAPI project from `lectures/06-web-fastapi-mcp/notes-api/` to `lectures/07-integrations-async-mcp/notes-api/` (exclude `.venv/`, `.ruff_cache/`, `uv.lock`)
-- [ ] T003 Create empty notebook file `lectures/07-integrations-async-mcp/lecture-07.ipynb` with metadata (Python 3.13+ kernel)
+- [x] T001 Create lecture directory structure: `lectures/07-integrations-async-mcp/`, `lectures/07-integrations-async-mcp/assets/`, `lectures/07-integrations-async-mcp/assets/memes/`
+- [x] T002 Copy Lecture 6 FastAPI project from `lectures/06-web-fastapi-mcp/notes-api/` to `lectures/07-integrations-async-mcp/notes-api/` (exclude `.venv/`, `.ruff_cache/`, `uv.lock`)
+- [x] T003 Create empty notebook file `lectures/07-integrations-async-mcp/lecture-07.ipynb` with metadata (Python 3.13+ kernel)
 
 ---
 
@@ -38,11 +38,11 @@
 
 **CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Read and analyze Lecture 6 notebook (`lectures/06-web-fastapi-mcp/lecture-06.ipynb`) in full — document tone patterns, Ukrainian phrasing style, emoji usage, cell structure, meme placement, and diagram conventions. Also briefly review Lectures 1–5 headings to ensure no content duplication
-- [ ] T005 [P] Update `lectures/07-integrations-async-mcp/notes-api/pyproject.toml` — add `pydantic-settings` to dependencies and `pytest` to dev dependencies
-- [ ] T006 [P] Create `lectures/07-integrations-async-mcp/notes-api/app/config.py` with pydantic-settings `Settings` class (fields: `app_name: str = "Notes API"`, `debug: bool = False`, `port: int = 8000`) loading from `.env`
-- [ ] T007 [P] Create `lectures/07-integrations-async-mcp/notes-api/.env.example` with placeholder values and `lectures/07-integrations-async-mcp/notes-api/.env` with local defaults. Ensure `.env` is in `.gitignore`
-- [ ] T008 Run `uv sync` in `lectures/07-integrations-async-mcp/notes-api/` to verify all dependencies install cleanly
+- [x] T004 Read and analyze Lecture 6 notebook (`lectures/06-web-fastapi-mcp/lecture-06.ipynb`) in full — document tone patterns, Ukrainian phrasing style, emoji usage, cell structure, meme placement, and diagram conventions. Also briefly review Lectures 1–5 headings to ensure no content duplication
+- [x] T005 [P] Update `lectures/07-integrations-async-mcp/notes-api/pyproject.toml` — add `pydantic-settings` to dependencies and `pytest` to dev dependencies
+- [x] T006 [P] Create `lectures/07-integrations-async-mcp/notes-api/app/config.py` with pydantic-settings `Settings` class (fields: `app_name: str = "Notes API"`, `debug: bool = False`, `port: int = 8000`) loading from `.env`
+- [x] T007 [P] Create `lectures/07-integrations-async-mcp/notes-api/.env.example` with placeholder values and `lectures/07-integrations-async-mcp/notes-api/.env` with local defaults. Ensure `.env` is in `.gitignore`
+- [x] T008 Run `uv sync` in `lectures/07-integrations-async-mcp/notes-api/` to verify all dependencies install cleanly
 
 **Checkpoint**: Project is ready with config, new dependencies, and clean environment. Notebook content can now be written.
 
@@ -56,23 +56,23 @@
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Write Section 0 (Header + Prerequisites) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — lecture number, title, date, prerequisites referencing Lecture 6 (FastAPI project, MCP concepts, ruff/black), required tools list (Python 3.13+, pipx, MCP-compatible LLM client). Bridge from L6: "Your FastAPI skeleton is ready. Today we bring it to life." (FR-002)
-- [ ] T010 [US1] Write Section 1 (Learning Objectives) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — 5 measurable outcomes: (1) async/event loop, (2) httpx requests, (3) config with .env/settings, (4) MCP server setup, (5) pytest basics (FR-001)
-- [ ] T011 [P] [US1] Create or source event loop diagram and save to `lectures/07-integrations-async-mcp/assets/event-loop.png` — show single thread processing multiple I/O tasks, waiter analogy visual (FR-012)
-- [ ] T012 [P] [US1] Create or source MCP data flow diagram and save to `lectures/07-integrations-async-mcp/assets/mcp-data-flow.png` — show LLM Client → MCP Protocol → keep-mcp server → Google Keep API (FR-012)
-- [ ] T013 [P] [US1] Find or create 2+ memes and save to `lectures/07-integrations-async-mcp/assets/memes/` — at least one for async section ("blocking call inside async def" disaster), one for testing or MCP section (FR-011)
-- [ ] T014 [US1] Write Section 2 (Async Essentials, ~15 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — waiter analogy, `time.sleep` vs `asyncio.sleep` demo, `def` vs `async def` in FastAPI, converting sync to async, critical rule (no blocking in async def), embed event-loop diagram. 3 runnable code examples (FR-003)
-- [ ] T015 [US1] Write Section 3 (HTTP Client with httpx, ~12 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — why httpx, sync `httpx.get()` to JSONPlaceholder, async `httpx.AsyncClient`, timeout config, error handling (`raise_for_status`, `TimeoutException`). 2 runnable code examples (FR-004)
-- [ ] T016 [US1] Write Section 4 (Config Basics, ~8 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — problem statement (hardcoded values), python-dotenv simple way (2 min), pydantic-settings as FastAPI way, show `config.py` from project, `.env` + `.env.example` + `.gitignore`. 2 runnable code examples (FR-005)
-- [ ] T017 [US1] Write Section 5 (Practical MCP: keep-mcp Setup, ~15 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — brief 2-sentence recap (NOT re-explaining L6 concepts), `pipx install keep-mcp`, Google master token auth with gkeepapi link + security warnings, Claude Desktop JSON config (primary) + Cursor/Gemini alternatives, test connection, live demo with screenshots/transcripts showing 3 tool invocations (search, read, create). Embed MCP data flow diagram. Include troubleshooting subsection (FR-006, FR-013)
-- [ ] T018 [US1] Write Section 6 (Safety Mindset, ~5 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — safe mode recap from L6, `UNSAFE_MODE=true` risks, principle of least privilege, credential hygiene (.env, .gitignore), connection to config section (FR-007, FR-017)
-- [ ] T019 [US1] Write Section 7 (Testing with pytest, ~15 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — why test, pytest basics (test files/functions/assert), `uv add --dev pytest`, FastAPI TestClient, test_health (GET /health assert 200), test_create_note (POST assert 201), test_invalid (assert 422), monkeypatch mock example (replace httpx.get with fake). Integration test flag concept (brief). 3 runnable code examples. Monkeypatch only — no fixtures, no mock.patch, no parameterization (FR-008)
-- [ ] T020 [US1] Write Section 8 (Quality Workflow, ~5 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — Makefile with check/fix/test targets, demo `make check` output, why run before every commit, Windows fallback note (choco install make or bash script). 1 code example (FR-009)
-- [ ] T021 [US1] Write Section 9 (Summary, ~3 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — bullet list of key takeaways covering all 7 topics (FR-014)
-- [ ] T022 [US1] Write Section 10 (What's Next, ~2 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — bridge to Lecture 8: Docker, PostgreSQL, docker compose, connection strings building on Settings pattern (FR-014)
-- [ ] T023 [US1] Write Section 11 (References, ~1 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — links to Python asyncio docs, httpx docs, FastAPI async docs, pydantic-settings docs, pytest docs, keep-mcp repo, gkeepapi docs, MCP official docs, ruff docs, GNU Make manual
-- [ ] T024 [US1] Verify all code cells in notebook execute sequentially in a clean kernel without errors. Fix any broken imports, missing dependencies, or cell ordering issues
-- [ ] T025 [US1] Validate notebook against FR checklist: count code examples (>=5), exercises (>=2), memes (>=2), diagrams (>=2), verify Ukrainian text with English terms in parentheses, check duration estimate (~85 min target)
+- [x] T009 [US1] Write Section 0 (Header + Prerequisites) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — lecture number, title, date, prerequisites referencing Lecture 6 (FastAPI project, MCP concepts, ruff/black), required tools list (Python 3.13+, pipx, MCP-compatible LLM client). Bridge from L6: "Your FastAPI skeleton is ready. Today we bring it to life." (FR-002)
+- [x] T010 [US1] Write Section 1 (Learning Objectives) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — 5 measurable outcomes: (1) async/event loop, (2) httpx requests, (3) config with .env/settings, (4) MCP server setup, (5) pytest basics (FR-001)
+- [x] T011 [P] [US1] Create or source event loop diagram and save to `lectures/07-integrations-async-mcp/assets/event-loop.png` — show single thread processing multiple I/O tasks, waiter analogy visual (FR-012)
+- [x] T012 [P] [US1] Create or source MCP data flow diagram and save to `lectures/07-integrations-async-mcp/assets/mcp-data-flow.png` — show LLM Client → MCP Protocol → keep-mcp server → Google Keep API (FR-012)
+- [x] T013 [P] [US1] Find or create 2+ memes and save to `lectures/07-integrations-async-mcp/assets/memes/` — at least one for async section ("blocking call inside async def" disaster), one for testing or MCP section (FR-011)
+- [x] T014 [US1] Write Section 2 (Async Essentials, ~15 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — waiter analogy, `time.sleep` vs `asyncio.sleep` demo, `def` vs `async def` in FastAPI, converting sync to async, critical rule (no blocking in async def), embed event-loop diagram. 3 runnable code examples (FR-003)
+- [x] T015 [US1] Write Section 3 (HTTP Client with httpx, ~12 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — why httpx, sync `httpx.get()` to JSONPlaceholder, async `httpx.AsyncClient`, timeout config, error handling (`raise_for_status`, `TimeoutException`). 2 runnable code examples (FR-004)
+- [x] T016 [US1] Write Section 4 (Config Basics, ~8 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — problem statement (hardcoded values), python-dotenv simple way (2 min), pydantic-settings as FastAPI way, show `config.py` from project, `.env` + `.env.example` + `.gitignore`. 2 runnable code examples (FR-005)
+- [x] T017 [US1] Write Section 5 (Practical MCP: keep-mcp Setup, ~15 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — brief 2-sentence recap (NOT re-explaining L6 concepts), `pipx install keep-mcp`, Google master token auth with gkeepapi link + security warnings, Claude Desktop JSON config (primary) + Cursor/Gemini alternatives, test connection, live demo with screenshots/transcripts showing 3 tool invocations (search, read, create). Embed MCP data flow diagram. Include troubleshooting subsection (FR-006, FR-013)
+- [x] T018 [US1] Write Section 6 (Safety Mindset, ~5 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — safe mode recap from L6, `UNSAFE_MODE=true` risks, principle of least privilege, credential hygiene (.env, .gitignore), connection to config section (FR-007, FR-017)
+- [x] T019 [US1] Write Section 7 (Testing with pytest, ~15 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — why test, pytest basics (test files/functions/assert), `uv add --dev pytest`, FastAPI TestClient, test_health (GET /health assert 200), test_create_note (POST assert 201), test_invalid (assert 422), monkeypatch mock example (replace httpx.get with fake). Integration test flag concept (brief). 3 runnable code examples. Monkeypatch only — no fixtures, no mock.patch, no parameterization (FR-008)
+- [x] T020 [US1] Write Section 8 (Quality Workflow, ~5 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — Makefile with check/fix/test targets, demo `make check` output, why run before every commit, Windows fallback note (choco install make or bash script). 1 code example (FR-009)
+- [x] T021 [US1] Write Section 9 (Summary, ~3 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — bullet list of key takeaways covering all 7 topics (FR-014)
+- [x] T022 [US1] Write Section 10 (What's Next, ~2 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — bridge to Lecture 8: Docker, PostgreSQL, docker compose, connection strings building on Settings pattern (FR-014)
+- [x] T023 [US1] Write Section 11 (References, ~1 min) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` — links to Python asyncio docs, httpx docs, FastAPI async docs, pydantic-settings docs, pytest docs, keep-mcp repo, gkeepapi docs, MCP official docs, ruff docs, GNU Make manual
+- [x] T024 [US1] Verify all code cells in notebook execute sequentially in a clean kernel without errors. Fix any broken imports, missing dependencies, or cell ordering issues
+- [x] T025 [US1] Validate notebook against FR checklist: count code examples (>=5), exercises (>=2), memes (>=2), diagrams (>=2), verify Ukrainian text with English terms in parentheses, check duration estimate (~85 min target)
 
 **Checkpoint**: Notebook is complete and all cells run. This is the MVP — the lecture can be delivered with just this.
 
@@ -104,11 +104,11 @@
 
 ### Implementation for User Story 3
 
-- [ ] T031 [US3] Create `lectures/07-integrations-async-mcp/notes-api/tests/__init__.py` (empty package marker)
-- [ ] T032 [P] [US3] Create `lectures/07-integrations-async-mcp/notes-api/tests/test_health.py` — test_health_returns_200 using FastAPI TestClient (GET /health, assert status 200, assert JSON body has status field)
-- [ ] T033 [P] [US3] Create `lectures/07-integrations-async-mcp/notes-api/tests/test_notes.py` — test_create_note_returns_201 (POST with valid body), test_create_note_invalid_returns_422 (POST with empty body), test_search_notes_returns_200 (POST /notes/search with query body), one monkeypatch mock example
-- [ ] T034 [US3] Run `uv run pytest` in `lectures/07-integrations-async-mcp/notes-api/` and confirm all tests pass. Fix any failures
-- [ ] T035 [US3] Update `lectures/07-integrations-async-mcp/notes-api/app/main.py` to import and use `settings` from `config.py` (e.g., `app = FastAPI(title=settings.app_name, debug=settings.debug)`)
+- [x] T031 [US3] Create `lectures/07-integrations-async-mcp/notes-api/tests/__init__.py` (empty package marker)
+- [x] T032 [P] [US3] Create `lectures/07-integrations-async-mcp/notes-api/tests/test_health.py` — test_health_returns_200 using FastAPI TestClient (GET /health, assert status 200, assert JSON body has status field)
+- [x] T033 [P] [US3] Create `lectures/07-integrations-async-mcp/notes-api/tests/test_notes.py` — test_create_note_returns_201 (POST with valid body), test_create_note_invalid_returns_422 (POST with empty body), test_search_notes_returns_200 (POST /notes/search with query body), one monkeypatch mock example
+- [x] T034 [US3] Run `uv run pytest` in `lectures/07-integrations-async-mcp/notes-api/` and confirm all tests pass. Fix any failures
+- [x] T035 [US3] Update `lectures/07-integrations-async-mcp/notes-api/app/main.py` to import and use `settings` from `config.py` (e.g., `app = FastAPI(title=settings.app_name, debug=settings.debug)`)
 - [ ] T036 [US3] Verify async/httpx code examples from notebook Sections 2–3 run correctly in the notebook kernel. Fix any issues with imports or async context
 
 **Checkpoint**: Project tests pass, config is wired, async/httpx examples verified.
@@ -123,10 +123,10 @@
 
 ### Implementation for User Story 4
 
-- [ ] T037 [US4] Create `lectures/07-integrations-async-mcp/notes-api/Makefile` with three targets: `check` (`ruff check . && black --check . && pytest`), `fix` (`ruff check --fix . && black .`), `test` (`pytest`). Add `.PHONY` declarations
-- [ ] T038 [US4] Run `make check` in `lectures/07-integrations-async-mcp/notes-api/` and confirm all three steps pass (zero ruff violations, black formatted, all tests green). Fix any issues
-- [ ] T039 [US4] Write Exercise 1 (MCP setup exercise) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` Section 5 — configure and run keep-mcp, verify by asking LLM to list notes. Include solution in hidden/collapsed cell (FR-010)
-- [ ] T040 [US4] Write Exercise 2 (testing exercise) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` Section 7 — write a test for POST /notes/search endpoint verifying 200 status, empty results list, schema match. Include solution in hidden/collapsed cell (FR-010)
+- [x] T037 [US4] Create `lectures/07-integrations-async-mcp/notes-api/Makefile` with three targets: `check` (`ruff check . && black --check . && pytest`), `fix` (`ruff check --fix . && black .`), `test` (`pytest`). Add `.PHONY` declarations
+- [x] T038 [US4] Run `make check` in `lectures/07-integrations-async-mcp/notes-api/` and confirm all three steps pass (zero ruff violations, black formatted, all tests green). Fix any issues
+- [x] T039 [US4] Write Exercise 1 (MCP setup exercise) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` Section 5 — configure and run keep-mcp, verify by asking LLM to list notes. Include solution in hidden/collapsed cell (FR-010)
+- [x] T040 [US4] Write Exercise 2 (testing exercise) in `lectures/07-integrations-async-mcp/lecture-07.ipynb` Section 7 — write a test for POST /notes/search endpoint verifying 200 status, empty results list, schema match. Include solution in hidden/collapsed cell (FR-010)
 
 **Checkpoint**: Quality workflow works. Both exercises are written with solutions.
 
@@ -141,7 +141,7 @@
 - [ ] T043 Verify cross-references to Lecture 6 are accurate — section numbers, concept names, project structure references all match actual L6 content
 - [ ] T044 Run full quickstart validation from `specs/010-lecture7-mcp-content/quickstart.md` — check all items in the verification checklist
 - [ ] T045 Verify notebook duration estimate — count cells, estimate reading/execution time, target ~85 minutes (FR-016)
-- [ ] T046 Final `make check` pass on project: `ruff check . && black --check . && pytest` — all green, zero warnings
+- [x] T046 Final `make check` pass on project: `ruff check . && black --check . && pytest` — all green, zero warnings
 
 ---
 

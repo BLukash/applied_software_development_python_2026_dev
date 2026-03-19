@@ -3,10 +3,11 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 
+from app.config import settings
 from app.routers import health, notes
 from app.schemas.common import ErrorResponse
 
-app = FastAPI(title="Notes API", version="0.1.0")
+app = FastAPI(title=settings.app_name, version="0.1.0", debug=settings.debug)
 
 app.include_router(health.router)
 app.include_router(notes.router)
