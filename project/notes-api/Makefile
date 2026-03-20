@@ -1,13 +1,13 @@
 .PHONY: check fix test
 
 check:
-	ruff check .
-	black --check .
-	pytest
+	uv run ruff check .
+	uv run black --check .
+	uv run pytest
 
 fix:
-	ruff check --fix .
-	black .
+	uv run ruff check --fix .
+	uv run black .
 
 test:
-	pytest
+	uv run pytest
