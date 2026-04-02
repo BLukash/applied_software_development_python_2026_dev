@@ -2,48 +2,33 @@
 ================================================================================
 SYNC IMPACT REPORT
 ================================================================================
-Version change: 1.4.0 → 1.5.0 (MINOR)
+Version change: 1.5.0 → 1.5.1 (PATCH)
 
-Modified principles:
-- III. Progressive Skill Building: Merged Lectures 9, 10, 11 into two lectures;
-  renumbered subsequent lectures.
+Modified principles: None (name/structure unchanged)
 
 Modified sections:
-- Lecture 9: Title changed from "Docker + PostgreSQL + API-DB connection"
-  to "Docker + PostgreSQL + SQLAlchemy: Real Persistence".
-  Merged old Lecture 9 (Docker, Compose, connection) with old Lecture 10
-  (SQLAlchemy ORM, CRUD, sessions). Compressed: Docker treated as a tool
-  (10 min, not a deep topic), SQLAlchemy shown once without Engine/Session
-  deep dive. Added: layering intro (repository.py, router→service→repository).
-  Removed: Docker basics deep dive (images/containers/volumes/ports as
-  separate topics), Postgres basics refresher, DB initialization scripts.
-- Lecture 10: Title changed from "SQLAlchemy ORM + sessions + real CRUD"
-  to "Migrations, Relationships & Data Integrity".
-  Merged remaining old Lecture 10 topics (relationships, DB design) with
-  old Lecture 11 (Alembic, repository pattern). Compressed: Alembic shown
-  once end-to-end, not drilled deep. Added: testing with real DB, Postgres
-  debugging toolkit. Removed: repository pattern deep dive (already
-  introduced practically in L9), Alembic deep dive.
-- Old Lecture 11 (Alembic migrations + relationships + repository pattern):
-  DELETED — content merged into new Lectures 9 and 10.
-- Lectures 12–15 renumbered to 11–14 (content unchanged).
+- IV. Quality Content Standards > Terminology rule: Clarified that English
+  translations in parentheses MUST only be used for specific technical terms,
+  NOT for obvious/self-explanatory phrases.
+- Prohibited Practices: Added rule against including per-section time
+  estimates (e.g., "(~10 хв)") in student-facing notebook content.
 
 Added sections: None
-Removed sections:
-- Old Lecture 11 (content merged, not lost)
-
-Capstone thread updated: 15 lectures → 14 lectures.
+Removed sections: None
 
 Templates requiring updates:
-- .specify/templates/plan-template.md: ✅ Compatible (no lecture refs)
-- .specify/templates/spec-template.md: ✅ Compatible (no lecture refs)
-- .specify/templates/tasks-template.md: ✅ Compatible (no lecture refs)
+- .specify/templates/plan-template.md: ✅ Compatible (no changes needed)
+- .specify/templates/spec-template.md: ✅ Compatible (no changes needed)
+- .specify/templates/tasks-template.md: ✅ Compatible (no changes needed)
 - .specify/templates/commands/*.md: N/A (no command templates exist)
 
 Follow-up TODOs:
-- Create spec for new Lecture 9 (Docker + PostgreSQL + SQLAlchemy)
-- Create spec for new Lecture 10 (Migrations, Relationships & Data Integrity)
-- Review existing lecture content for excessive icon usage (carried forward)
+- Review existing L6, L7, L8 notebooks for section time estimates in
+  parentheses and remove them if present
+- Review existing notebooks for unnecessary English translations of
+  obvious Ukrainian phrases and remove them
+- Create spec for Lecture 9 (Docker + PostgreSQL + SQLAlchemy)
+- Create spec for Lecture 10 (Migrations, Relationships & Data Integrity)
 ================================================================================
 -->
 
@@ -251,7 +236,7 @@ All lecture materials MUST follow consistent formatting and quality guidelines.
 
 - Format: Jupyter Notebook (.ipynb) with markdown cells and executable code cells
 - Language: All explanatory text MUST be in Ukrainian
-- Terminology rule: keep Ukrainian explanation + show the English technical term in parentheses once, where some programming specific language is used. Example: "винятки (exceptions)", "типізація (type hints)"
+- Terminology rule: keep Ukrainian explanation + show the English technical term in parentheses once, but ONLY for specific technical terms that students need to learn in English. DO NOT translate obvious or self-explanatory phrases (e.g., do not write "Підсумок (Summary)" or "Що далі? (What's Next)" — these are clear without translation). Example of correct usage: "винятки (exceptions)", "типізація (type hints)", "фікстури (fixtures)"
 - Code comments: MAY be in English for industry-standard terminology. But there should not bee too many comments, just for the complex parts
 - Every lecture MUST include:
   - Learning objectives (at the start)
@@ -320,6 +305,7 @@ The course MUST use these specific technologies and tools:
 - DO NOT include huge copy-paste blocks without explanation
 - DO NOT use 3d-party packages, when standard library has the same functionality
 - DO NOT overuse icons/emojis in presentation text — they distract rather than help; use sparingly (1-2 per section maximum) and only where they add genuine value (e.g., checkmarks in summaries, warning signs for important notes)
+- DO NOT include time estimates in parentheses for individual lecture sections (e.g., "(~10 хв)" or "(10 min)") — section timing is an internal planning detail and MUST NOT appear in student-facing notebook content
 
 ## Development Workflow
 
@@ -386,4 +372,4 @@ This constitution establishes binding principles for the "Applied Software Devel
 - **MINOR**: New sections, significant content additions
 - **PATCH**: Clarifications, typo fixes, minor updates
 
-**Version**: 1.5.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-04-02
+**Version**: 1.5.1 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-04-02
