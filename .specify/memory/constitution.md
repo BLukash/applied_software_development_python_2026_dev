@@ -2,40 +2,46 @@
 ================================================================================
 SYNC IMPACT REPORT
 ================================================================================
-Version change: 1.2.0 → 1.3.0 (MINOR)
+Version change: 1.3.0 → 1.4.0 (MINOR)
 
 Modified principles:
-- III. Progressive Skill Building: Restructured Lecture 6 and Lecture 7 topics
+- III. Progressive Skill Building: Major lecture restructuring
 
 Modified sections:
-- Lecture 6: Title changed from "REST + FastAPI fundamentals (project bootstrap)"
-  to "Web Fundamentals & FastAPI: API Skeleton + MCP Introduction".
-  Added: web server basics (client/server, request-response, ports),
-  path vs query distinction, consistent error payload shape, MCP intro
-  (concept only: host/client/server, tools/resources/prompts + keep-mcp example).
-  Removed: explicit "Project increment" section (project bootstrap is now
-  a standalone topic).
-- Lecture 7: Title changed from "Async + HTTP clients + quality workflow"
-  to "Python Integrations: Async + HTTPX + Testing + Practical MCP (Google Keep)".
-  Added: MCP practical integration (client wrapper + wire endpoints to keep-mcp),
-  safety mindset (safe mode vs unsafe mode), mocking MCP calls in tests,
-  minimal settings object for config.
-  Removed: "Background tasks (FastAPI basics)" topic, explicit
-  "Project increment" section.
+- Lecture 6: Title changed from "Web Fundamentals and FastAPI: API Skeleton
+  + MCP Introduction" to "Web Fundamentals & FastAPI: API Skeleton".
+  Removed: MCP intro topic (host/client/server, tools/resources/prompts,
+  keep-mcp example).
+  Everything else unchanged.
+- Lecture 7: Title changed from "Python Web Server Integrations: Async, HTTPX,
+  Testing, Practical MCP" to "Async, HTTPX, Testing & Quality Workflow".
+  Removed: MCP practical integration (client wrapper, wire endpoints to
+  keep-mcp tools), safety mindset (safe mode vs unsafe mode), mocking MCP
+  calls. Added: expanded testing section with exercise for notes API endpoints.
+  Kept: async essentials, httpx, config basics, pytest + TestClient (general),
+  quality workflow.
+- Lectures 8–14 renumbered to 9–15 (content unchanged).
 
-Added sections: None
-Removed sections: None
+Added sections:
+- Lecture 8 — "MCP: Model Context Protocol — AI Tool Integration"
+  (new dedicated lecture consolidating all MCP content + new depth topics)
+
+Removed sections: None (content moved, not deleted)
+
+Capstone thread updated: 14 lectures → 15 lectures.
 
 Templates requiring updates:
-- .specify/templates/plan-template.md: ✅ Compatible (no changes needed)
-- .specify/templates/spec-template.md: ✅ Compatible (no changes needed)
-- .specify/templates/tasks-template.md: ✅ Compatible (no changes needed)
+- .specify/templates/plan-template.md: ✅ Compatible (no lecture refs)
+- .specify/templates/spec-template.md: ✅ Compatible (no lecture refs)
+- .specify/templates/tasks-template.md: ✅ Compatible (no lecture refs)
 - .specify/templates/commands/*.md: N/A (no command templates exist)
 
 Follow-up TODOs:
-- Create spec for Lecture 6 content reflecting new MCP intro topics
-- Create spec for Lecture 7 content reflecting practical MCP integration
-- Review existing lecture content for excessive icon usage (carried from 1.0.1)
+- Create spec for new Lecture 8 (MCP dedicated content)
+- Update existing Lecture 6 notebook to remove MCP intro section
+- Update existing Lecture 7 notebook to remove MCP content and expand
+  testing section with notes API endpoint testing exercise
+- Review existing lecture content for excessive icon usage (carried forward)
 ================================================================================
 -->
 
@@ -61,7 +67,7 @@ All content MUST prioritize student learning outcomes over comprehensive coverag
 
 The course MUST emphasize building real, functional applications over theoretical knowledge.
 
-- Python basics MUST be condensed to essential concepts needed for practical development, however, we should not omit interesting topics like, how data structures are stored in memory, history of language, plans for the future and so on 
+- Python basics MUST be condensed to essential concepts needed for practical development, however, we should not omit interesting topics like, how data structures are stored in memory, history of language, plans for the future and so on
 - Every lecture from Lecture 5 onward MUST include at least one runnable mini-project
 - Technologies covered MUST reflect current industry practices (FastAPI, SQLAlchemy, LLM utilization, RAG, etc.)
 - Code examples MUST demonstrate industry-inspired patterns while staying minimal and teachable (avoid overengineering)
@@ -81,7 +87,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
   - Ensure natural narrative flow and cross-references
 - Lecture 1 — Python intro + environment setup
     Topics
-    - What Python is (interpreted, dynamic, batteries-included) + where it’s used
+    - What Python is (interpreted, dynamic, batteries-included) + where it's used
     - Installing Python 3.11+, checking versions, PATH
     - IDE choice (VS Code / PyCharm) + recommended extensions
     - Running code: REPL vs script vs notebook (when to use what)
@@ -90,9 +96,9 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Your first program + simple I/O: print(), input()
     - Variables, basic types (int, float, str, bool, None)
     - Basic operators, formatting (f-strings)
-- Lecture 2 — Core language mechanics (how Python “works”)
+- Lecture 2 — Core language mechanics (how Python "works")
     Topics
-    - Deep dive into Python data types and the way they are stored in memory 
+    - Deep dive into Python data types and the way they are stored in memory
     - Names vs values, references, identity (id()), mutability
     - Memory model intuition: list vs tuple, string immutability
     - Basics of collections: list, tuple, dict, set
@@ -136,7 +142,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - File I/O: open(), context managers, encoding (utf-8)
     - JSON: json.load/dump, schema-like thinking
     - CSV: csv module + pandas teaser
-- Lecture 6 — Web Fundamentals and FastAPI: API Skeleton + MCP Introduction
+- Lecture 6 — Web Fundamentals & FastAPI: API Skeleton
     Topics
     - Web server basics: client/server, request–response, ports
     - HTTP essentials: methods, status codes, headers/body, JSON, path vs query
@@ -147,17 +153,29 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - OpenAPI/Swagger + running with uvicorn
     - Project bootstrap: uv init/sync, minimal structure (app/routers/schemas/services/clients)
     - Tooling: ruff + black (how to run)
-    - MCP intro (concept only): host/client/server, tools/resources/prompts + keep-mcp as example (no run)
-- Lecture 7 — Python Web Server Integrations: Async, HTTPX, Testing, Practical MCP
+- Lecture 7 — Async, HTTPX, Testing & Quality Workflow
     Topics
     - Async essentials: event loop intuition, async/await, why in FastAPI
     - HTTP client: httpx (sync vs async), timeouts, error handling, JSON parsing
-    - Config basics: .env + env vars + minimal settings object
-    - MCP practical integration: client wrapper module + wire endpoints to keep-mcp tools
-    - Safety mindset: safe mode vs unsafe mode (why defaults matter)
-    - Testing: pytest, FastAPI TestClient, mocking MCP calls, optional integration test flag
+    - Config basics: .env + env vars + minimal settings object (pydantic-settings)
+    - Testing: pytest, FastAPI TestClient, writing tests for notes API endpoints
+    - Testing exercise: students write tests for their notes API CRUD endpoints
     - Quality workflow: run lint/format/tests locally as a single routine
-- Lecture 8 — Docker + PostgreSQL + API-DB connection
+- Lecture 8 — MCP: Model Context Protocol — AI Tool Integration
+    Topics
+    - MCP concept: the "USB-C for AI" problem statement, why standardized protocols matter
+    - Architecture: Host, Client, Server — three participants explained with diagrams
+    - Three primitives: Tools, Resources, Prompts — what each does, when to use which
+    - MCP lifecycle: how clients spawn and manage servers (subprocess model)
+    - Transport mechanisms: stdio vs SSE/HTTP — comparison table, when to use which
+    - Practical setup: keep-mcp via pipx, Google Master Token auth, LLM client config
+    - Live demo: search, create, list notes via keep-mcp through an LLM client
+    - Annotated config JSON: explaining every field in the MCP client config
+    - Safety mindset: safe mode vs unsafe mode, secure defaults, principle of least privilege
+    - Troubleshooting guide: common errors and how to fix them
+    - Testing MCP integrations: mocking MCP calls with monkeypatch, integration test flag
+    - Connection to our project: how the notes-api could become an MCP server (conceptual preview, no implementation)
+- Lecture 9 — Docker + PostgreSQL + API-DB connection
     Topics
     - Why containers: reproducible environment (reminder from prev OS course)
     - Docker basics: images/containers, volumes, ports
@@ -168,7 +186,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     Project increment:
     Run project with docker compose
     Prepare DB container + connect from app (no ORM yet)
-- Lecture 9 — SQLAlchemy ORM + sessions + real CRUD
+- Lecture 10 — SQLAlchemy ORM + sessions + real CRUD
     Topics
     - ORM concept: mapping classes ↔ tables
     - SQLAlchemy 2.0 core concepts:
@@ -179,17 +197,17 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Project increment:
     Replace in-memory storage with Postgres + SQLAlchemy
     CRUD endpoints persist data properly
-- Lecture 10 — Alembic migrations + relationships + repository pattern
+- Lecture 11 — Alembic migrations + relationships + repository pattern
     Topics
     - Why migrations, schema evolution mindset
     - Alembic: init, autogenerate, upgrade/downgrade
     - Relationships: one-to-many (e.g., user → notes) (simple)
     - Layering: router → service → repository (minimal clean architecture)
-    - “Don’t leak ORM models into API schemas” rule (important)
+    - "Don't leak ORM models into API schemas" rule (important)
     - Project increment:
     Add migrations + at least one relationship
     Refactor: introduce repository.py and service.py
-- Lecture 11 — pandas analytics from DB exports
+- Lecture 12 — pandas analytics from DB exports
     Topics
     - What pandas is good for (and not)
     - Data loading: CSV + (optional) direct DB query into DataFrame
@@ -199,8 +217,8 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - top tags, activity over time, usage statistics
     - When pandas breaks: memory + alternatives overview (DuckDB / Polars) (conceptual)
     - Project increment:
-    Add “/analytics/report” endpoint that returns computed stats (via pandas pipeline)
-- Lecture 12 — NumPy + vectorization + simple ML from scratch
+    Add "/analytics/report" endpoint that returns computed stats (via pandas pipeline)
+- Lecture 13 — NumPy + vectorization + simple ML from scratch
     Topics
     - NumPy arrays vs Python lists (performance reasons)
     - Vectorization: broadcasting, dot, elementwise ops
@@ -209,18 +227,18 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Metrics basics: accuracy, precision/recall (minimal)
     - Saving/loading model parameters (np.save)
     - Project increment:
-    Add “/ml/predict” endpoint: example: classify note as “important vs not” (toy but real pipeline)
-- Lecture 13 — Visualization (storytelling) + project reporting
+    Add "/ml/predict" endpoint: example: classify note as "important vs not" (toy but real pipeline)
+- Lecture 14 — Visualization (storytelling) + project reporting
     Topics
     - Matplotlib basics: line/bar/hist/scatter
     - Seaborn for quick statistical plots
     - Plotly as optional interactive bonus
-    - What makes a chart “good” (labels, scale, comparisons)
+    - What makes a chart "good" (labels, scale, comparisons)
     - Generating reports: export plots as images, basic HTML report generation (optional)
-    - Connect to project: “analytics as visuals”
+    - Connect to project: "analytics as visuals"
     - Project increment:
-    Add “/analytics/plots” endpoint returning plot images
-- Lecture 14 — Shipping: packaging + deployment + “real project checklist”
+    Add "/analytics/plots" endpoint returning plot images
+- Lecture 15 — Shipping: packaging + deployment + "real project checklist"
     Topics
     - Project packaging basics: pyproject.toml, dependency pinning
     - Config management: .env, settings class
@@ -233,7 +251,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     Final deliverable: Dockerized app + DB + migrations + docs + tests
 - Each lecture MUST include a "Prerequisites" section listing required prior knowledge
 - Cross-references to previous lectures MUST use consistent notation
-- Course Capstone Thread: students build one evolving project across the semester: API → DB → analytics → visualization → deployment. Each lecture from the later stages adds one feature to the same repo.
+- Course Capstone Thread: students build one evolving project across 15 lectures: API → DB → analytics → visualization → deployment. Each lecture from the later stages adds one feature to the same repo.
 
 **Rationale**: Clear progression prevents gaps in understanding and allows students to catch up if they miss lectures.
 
@@ -243,7 +261,7 @@ All lecture materials MUST follow consistent formatting and quality guidelines.
 
 - Format: Jupyter Notebook (.ipynb) with markdown cells and executable code cells
 - Language: All explanatory text MUST be in Ukrainian
-- Terminology rule: keep Ukrainian explanation + show the English technical term in parentheses once, where some programming specific language is used. Example: “винятки (exceptions)”, “типізація (type hints)”
+- Terminology rule: keep Ukrainian explanation + show the English technical term in parentheses once, where some programming specific language is used. Example: "винятки (exceptions)", "типізація (type hints)"
 - Code comments: MAY be in English for industry-standard terminology. But there should not bee too many comments, just for the complex parts
 - Every lecture MUST include:
   - Learning objectives (at the start)
@@ -300,7 +318,6 @@ The course MUST use these specific technologies and tools:
 - **Code quality**: ruff (lint) + black (format)
 - **Contaienrs**: Docker + docker-compose
 - **Version Control**: Git basics
-
 
 ### Prohibited Practices
 
@@ -379,4 +396,4 @@ This constitution establishes binding principles for the "Applied Software Devel
 - **MINOR**: New sections, significant content additions
 - **PATCH**: Clarifications, typo fixes, minor updates
 
-**Version**: 1.3.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-03-03
+**Version**: 1.4.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-04-02
