@@ -1,50 +1,72 @@
-import httpx
-from fastapi.testclient import TestClient
-
-from app.main import app
-
-client = TestClient(app)
+from __future__ import annotations
 
 
-def test_create_note_returns_201():
+def test_create_note_returns_201(client):
     response = client.post(
         "/notes/create",
-        json={"title": "Test Note", "content": "Hello world", "tags": ["demo"]},
+        json={"title": "Test Note", "content": "Hello DB!", "tags": ["test"]},
     )
     assert response.status_code == 201
     data = response.json()
     assert data["title"] == "Test Note"
-    assert data["content"] == "Hello world"
+    assert data["content"] == "Hello DB!"
+    assert data["tags"] == ["test"]
     assert "id" in data
     assert "created_at" in data
 
 
-def test_create_note_invalid_returns_422():
+def test_create_note_invalid_returns_422(client):
     response = client.post("/notes/create", json={})
     assert response.status_code == 422
 
 
-def test_search_notes_returns_200():
-    response = client.post("/notes/search", json={"query": "test"})
+def test_get_note_returns_200(client):
+    create_resp = client.post(
+        "/notes/create",
+        json={"title": "Get Me", "content": "Find this note"},
+    )
+    note_id = create_resp.json()["id"]
+
+    response = client.get(f"/notes/{note_id}")
+    assert response.status_code == 200
+    assert response.json()["title"] == "Get Me"
+
+
+def test_get_note_not_found_returns_404(client):
+    response = client.get("/notes/nonexistent-id")
+    assert response.status_code == 404
+
+
+def test_search_notes_returns_200(client):
+    client.post(
+        "/notes/create",
+        json={"title": "Searchable", "content": "Find me by search"},
+    )
+
+    response = client.post(
+        "/notes/search",
+        json={"query": "Searchable", "limit": 10},
+    )
     assert response.status_code == 200
     data = response.json()
-    assert "results" in data
-    assert "total" in data
-    assert data["results"] == []
-    assert data["total"] == 0
+    assert data["total"] >= 1
+    assert data["results"][0]["title"] == "Searchable"
 
 
-def test_external_call_with_monkeypatch(monkeypatch):
-    """Example: mock httpx.get so we don't hit the real network."""
+def test_delete_note_returns_204(client):
+    create_resp = client.post(
+        "/notes/create",
+        json={"title": "Delete Me", "content": "Goodbye"},
+    )
+    note_id = create_resp.json()["id"]
 
-    class FakeResponse:
-        status_code = 200
+    response = client.delete(f"/notes/{note_id}")
+    assert response.status_code == 204
 
-        def json(self):
-            return {"title": "Mocked post", "id": 1}
+    get_resp = client.get(f"/notes/{note_id}")
+    assert get_resp.status_code == 404
 
-    monkeypatch.setattr(httpx, "get", lambda *args, **kwargs: FakeResponse())
 
-    result = httpx.get("https://jsonplaceholder.typicode.com/posts/1")
-    assert result.status_code == 200
-    assert result.json()["title"] == "Mocked post"
+def test_delete_note_not_found_returns_404(client):
+    response = client.delete("/notes/nonexistent-id")
+    assert response.status_code == 404

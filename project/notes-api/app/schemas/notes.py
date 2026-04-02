@@ -12,6 +12,8 @@ class NoteCreate(BaseModel):
 
 
 class NoteResponse(BaseModel):
+    model_config = {"from_attributes": True}
+
     id: str
     title: str
     content: str

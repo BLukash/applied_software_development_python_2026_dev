@@ -1,16 +1,16 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime
-from uuid import uuid4
+from fastapi import APIRouter, Depends, Response, status
+from sqlalchemy.orm import Session
 
-from fastapi import APIRouter, status
-
+from app.database import get_db
 from app.schemas.notes import (
     NoteCreate,
     NoteResponse,
     NoteSearchQuery,
     NoteSearchResult,
 )
+from app.services import notes as notes_service
 
 router = APIRouter()
 
@@ -18,16 +18,23 @@ router = APIRouter()
 @router.post(
     "/notes/create", response_model=NoteResponse, status_code=status.HTTP_201_CREATED
 )
-async def create_note(note: NoteCreate) -> NoteResponse:
-    return NoteResponse(
-        id=str(uuid4()),
-        title=note.title,
-        content=note.content,
-        tags=note.tags,
-        created_at=datetime.now(UTC),
-    )
+def create_note(note: NoteCreate, db: Session = Depends(get_db)) -> NoteResponse:
+    return notes_service.create_note(db, note)
+
+
+@router.get("/notes/{note_id}", response_model=NoteResponse)
+def get_note(note_id: str, db: Session = Depends(get_db)) -> NoteResponse:
+    return notes_service.get_note(db, note_id)
 
 
 @router.post("/notes/search", response_model=NoteSearchResult)
-async def search_notes(query: NoteSearchQuery) -> NoteSearchResult:
-    return NoteSearchResult(results=[], total=0)
+def search_notes(
+    query: NoteSearchQuery, db: Session = Depends(get_db)
+) -> NoteSearchResult:
+    return notes_service.search_notes(db, query)
+
+
+@router.delete("/notes/{note_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_note(note_id: str, db: Session = Depends(get_db)) -> Response:
+    notes_service.delete_note(db, note_id)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
