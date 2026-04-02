@@ -2,33 +2,37 @@
 ================================================================================
 SYNC IMPACT REPORT
 ================================================================================
-Version change: 1.3.0 → 1.4.0 (MINOR)
+Version change: 1.4.0 → 1.5.0 (MINOR)
 
 Modified principles:
-- III. Progressive Skill Building: Major lecture restructuring
+- III. Progressive Skill Building: Merged Lectures 9, 10, 11 into two lectures;
+  renumbered subsequent lectures.
 
 Modified sections:
-- Lecture 6: Title changed from "Web Fundamentals and FastAPI: API Skeleton
-  + MCP Introduction" to "Web Fundamentals & FastAPI: API Skeleton".
-  Removed: MCP intro topic (host/client/server, tools/resources/prompts,
-  keep-mcp example).
-  Everything else unchanged.
-- Lecture 7: Title changed from "Python Web Server Integrations: Async, HTTPX,
-  Testing, Practical MCP" to "Async, HTTPX, Testing & Quality Workflow".
-  Removed: MCP practical integration (client wrapper, wire endpoints to
-  keep-mcp tools), safety mindset (safe mode vs unsafe mode), mocking MCP
-  calls. Added: expanded testing section with exercise for notes API endpoints.
-  Kept: async essentials, httpx, config basics, pytest + TestClient (general),
-  quality workflow.
-- Lectures 8–14 renumbered to 9–15 (content unchanged).
+- Lecture 9: Title changed from "Docker + PostgreSQL + API-DB connection"
+  to "Docker + PostgreSQL + SQLAlchemy: Real Persistence".
+  Merged old Lecture 9 (Docker, Compose, connection) with old Lecture 10
+  (SQLAlchemy ORM, CRUD, sessions). Compressed: Docker treated as a tool
+  (10 min, not a deep topic), SQLAlchemy shown once without Engine/Session
+  deep dive. Added: layering intro (repository.py, router→service→repository).
+  Removed: Docker basics deep dive (images/containers/volumes/ports as
+  separate topics), Postgres basics refresher, DB initialization scripts.
+- Lecture 10: Title changed from "SQLAlchemy ORM + sessions + real CRUD"
+  to "Migrations, Relationships & Data Integrity".
+  Merged remaining old Lecture 10 topics (relationships, DB design) with
+  old Lecture 11 (Alembic, repository pattern). Compressed: Alembic shown
+  once end-to-end, not drilled deep. Added: testing with real DB, Postgres
+  debugging toolkit. Removed: repository pattern deep dive (already
+  introduced practically in L9), Alembic deep dive.
+- Old Lecture 11 (Alembic migrations + relationships + repository pattern):
+  DELETED — content merged into new Lectures 9 and 10.
+- Lectures 12–15 renumbered to 11–14 (content unchanged).
 
-Added sections:
-- Lecture 8 — "MCP: Model Context Protocol — AI Tool Integration"
-  (new dedicated lecture consolidating all MCP content + new depth topics)
+Added sections: None
+Removed sections:
+- Old Lecture 11 (content merged, not lost)
 
-Removed sections: None (content moved, not deleted)
-
-Capstone thread updated: 14 lectures → 15 lectures.
+Capstone thread updated: 15 lectures → 14 lectures.
 
 Templates requiring updates:
 - .specify/templates/plan-template.md: ✅ Compatible (no lecture refs)
@@ -37,10 +41,8 @@ Templates requiring updates:
 - .specify/templates/commands/*.md: N/A (no command templates exist)
 
 Follow-up TODOs:
-- Create spec for new Lecture 8 (MCP dedicated content)
-- Update existing Lecture 6 notebook to remove MCP intro section
-- Update existing Lecture 7 notebook to remove MCP content and expand
-  testing section with notes API endpoint testing exercise
+- Create spec for new Lecture 9 (Docker + PostgreSQL + SQLAlchemy)
+- Create spec for new Lecture 10 (Migrations, Relationships & Data Integrity)
 - Review existing lecture content for excessive icon usage (carried forward)
 ================================================================================
 -->
@@ -151,14 +153,14 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - FastAPI basics: app, routers, endpoints, params (path/query/body)
     - Pydantic schemas: request vs response, validation (422), HTTPException
     - OpenAPI/Swagger + running with uvicorn
-    - Project bootstrap: uv init/sync, minimal structure (app/routers/schemas/services/clients)
+    - Project bootstrap: uv init/sync, minimal structure (app/routers/schemas/services)
     - Tooling: ruff + black (how to run)
 - Lecture 7 — Async, HTTPX, Testing & Quality Workflow
     Topics
     - Async essentials: event loop intuition, async/await, why in FastAPI
     - HTTP client: httpx (sync vs async), timeouts, error handling, JSON parsing
     - Config basics: .env + env vars + minimal settings object (pydantic-settings)
-    - Testing: pytest, FastAPI TestClient, writing tests for notes API endpoints
+    - Testing: pytest, FastAPI TestClient, fixtures, parametrize, error cases
     - Testing exercise: students write tests for their notes API CRUD endpoints
     - Quality workflow: run lint/format/tests locally as a single routine
 - Lecture 8 — MCP: Model Context Protocol — AI Tool Integration
@@ -175,39 +177,27 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Troubleshooting guide: common errors and how to fix them
     - Testing MCP integrations: mocking MCP calls with monkeypatch, integration test flag
     - Connection to our project: how the notes-api could become an MCP server (conceptual preview, no implementation)
-- Lecture 9 — Docker + PostgreSQL + API-DB connection
+- Lecture 9 — Docker + PostgreSQL + SQLAlchemy: Real Persistence
     Topics
-    - Why containers: reproducible environment (reminder from prev OS course)
-    - Docker basics: images/containers, volumes, ports
-    - docker compose setup: FastAPI + Postgres
-    - Connection strings, config separation
-    - Postgres basics refresher: tables, keys, constraints
-    - DB initialization scripts (optional)
+    - Docker as a tool (NOT a deep topic): what is a container (1 min recap), docker compose setup for FastAPI + Postgres (show docker-compose.yml), `docker compose up` — students USE Docker, don't study it deeply
+    - Connection setup: connection string from .env (pydantic-settings from L7), sqlalchemy.create_engine, verify connection
+    - SQLAlchemy ORM basics: ORM concept (class = table), define models, Engine, Session, Base.metadata.create_all
+    - CRUD with ORM: replace in-memory stubs with real DB operations (create, read, search, delete), transaction basics (session.commit())
+    - Error handling: not found → 404, unique constraint violations → 409
+    - Layering intro: "Don't leak ORM models into API schemas" rule, introduce repository.py as thin DB access wrapper, router → service → repository flow (minimal, practical)
     Project increment:
-    Run project with docker compose
-    Prepare DB container + connect from app (no ORM yet)
-- Lecture 10 — SQLAlchemy ORM + sessions + real CRUD
+    docker compose up starts Postgres + app, CRUD endpoints persist real data, basic repository.py exists
+- Lecture 10 — Migrations, Relationships & Data Integrity
     Topics
-    - ORM concept: mapping classes ↔ tables
-    - SQLAlchemy 2.0 core concepts:
-    - Engine, Session, Models, select()
-    - CRUD with ORM + transaction basics
-    - Error handling: unique constraint violations, not found
-    - DB design: indexes, relationships (intro only)
-    - Project increment:
-    Replace in-memory storage with Postgres + SQLAlchemy
-    CRUD endpoints persist data properly
-- Lecture 11 — Alembic migrations + relationships + repository pattern
-    Topics
-    - Why migrations, schema evolution mindset
-    - Alembic: init, autogenerate, upgrade/downgrade
-    - Relationships: one-to-many (e.g., user → notes) (simple)
-    - Layering: router → service → repository (minimal clean architecture)
-    - "Don't leak ORM models into API schemas" rule (important)
-    - Project increment:
-    Add migrations + at least one relationship
-    Refactor: introduce repository.py and service.py
-- Lecture 12 — pandas analytics from DB exports
+    - Why migrations: schema evolution problem, what happens when you change a model but DB is already deployed
+    - Alembic walkthrough: init, revision --autogenerate, upgrade/downgrade — show it ONCE end-to-end, don't drill deep
+    - Relationships: one-to-many (e.g., User → Notes or Tag → Notes), ForeignKey, relationship(), this doubles as a migration exercise
+    - DB design principles: indexes (when and why), constraints, "think about queries before designing tables"
+    - Testing with real DB: test fixtures that create/teardown a test database, contrast with L7's in-memory TestClient approach
+    - Brief Postgres debugging toolkit: psql basics, \dt, \d table_name
+    Project increment:
+    Alembic initialized, at least one migration, one relationship added, test DB setup working
+- Lecture 11 — pandas analytics from DB exports
     Topics
     - What pandas is good for (and not)
     - Data loading: CSV + (optional) direct DB query into DataFrame
@@ -218,7 +208,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - When pandas breaks: memory + alternatives overview (DuckDB / Polars) (conceptual)
     - Project increment:
     Add "/analytics/report" endpoint that returns computed stats (via pandas pipeline)
-- Lecture 13 — NumPy + vectorization + simple ML from scratch
+- Lecture 12 — NumPy + vectorization + simple ML from scratch
     Topics
     - NumPy arrays vs Python lists (performance reasons)
     - Vectorization: broadcasting, dot, elementwise ops
@@ -228,7 +218,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Saving/loading model parameters (np.save)
     - Project increment:
     Add "/ml/predict" endpoint: example: classify note as "important vs not" (toy but real pipeline)
-- Lecture 14 — Visualization (storytelling) + project reporting
+- Lecture 13 — Visualization (storytelling) + project reporting
     Topics
     - Matplotlib basics: line/bar/hist/scatter
     - Seaborn for quick statistical plots
@@ -238,7 +228,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - Connect to project: "analytics as visuals"
     - Project increment:
     Add "/analytics/plots" endpoint returning plot images
-- Lecture 15 — Shipping: packaging + deployment + "real project checklist"
+- Lecture 14 — Shipping: packaging + deployment + "real project checklist"
     Topics
     - Project packaging basics: pyproject.toml, dependency pinning
     - Config management: .env, settings class
@@ -251,7 +241,7 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     Final deliverable: Dockerized app + DB + migrations + docs + tests
 - Each lecture MUST include a "Prerequisites" section listing required prior knowledge
 - Cross-references to previous lectures MUST use consistent notation
-- Course Capstone Thread: students build one evolving project across 15 lectures: API → DB → analytics → visualization → deployment. Each lecture from the later stages adds one feature to the same repo.
+- Course Capstone Thread: students build one evolving project across 14 lectures: API → DB → analytics → visualization → deployment. Each lecture from the later stages adds one feature to the same repo.
 
 **Rationale**: Clear progression prevents gaps in understanding and allows students to catch up if they miss lectures.
 
@@ -396,4 +386,4 @@ This constitution establishes binding principles for the "Applied Software Devel
 - **MINOR**: New sections, significant content additions
 - **PATCH**: Clarifications, typo fixes, minor updates
 
-**Version**: 1.4.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-04-02
+**Version**: 1.5.0 | **Ratified**: 2026-01-24 | **Last Amended**: 2026-04-02
