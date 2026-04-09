@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.models.note import NoteModel
 from app.repositories import notes as notes_repo
 from app.schemas.notes import (
     NoteCreate,
@@ -12,9 +13,19 @@ from app.schemas.notes import (
 )
 
 
+def _note_to_response(note: NoteModel) -> NoteResponse:
+    return NoteResponse(
+        id=note.id,
+        title=note.title,
+        content=note.content,
+        tags=[t.name for t in note.tags],
+        created_at=note.created_at,
+    )
+
+
 def create_note(db: Session, note_data: NoteCreate) -> NoteResponse:
     note = notes_repo.create_note(db, note_data)
-    return NoteResponse.model_validate(note)
+    return _note_to_response(note)
 
 
 def get_note(db: Session, note_id: str) -> NoteResponse:
@@ -24,14 +35,14 @@ def get_note(db: Session, note_id: str) -> NoteResponse:
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Note {note_id} not found",
         )
-    return NoteResponse.model_validate(note)
+    return _note_to_response(note)
 
 
 def search_notes(db: Session, query: NoteSearchQuery) -> NoteSearchResult:
     notes = notes_repo.search_notes(
         db, query=query.query, tags=query.tags, limit=query.limit
     )
-    results = [NoteResponse.model_validate(n) for n in notes]
+    results = [_note_to_response(n) for n in notes]
     return NoteSearchResult(results=results, total=len(results))
 
 

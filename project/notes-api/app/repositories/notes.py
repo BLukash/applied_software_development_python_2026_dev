@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from app.models.note import NoteModel
+from app.models.tag import TagModel
 from app.schemas.notes import NoteCreate
 
 
@@ -11,8 +12,9 @@ def create_note(db: Session, note_data: NoteCreate) -> NoteModel:
     note = NoteModel(
         title=note_data.title,
         content=note_data.content,
-        tags=note_data.tags,
     )
+    for tag_name in note_data.tags:
+        note.tags.append(TagModel(name=tag_name))
     db.add(note)
     db.commit()
     db.refresh(note)
@@ -20,7 +22,12 @@ def create_note(db: Session, note_data: NoteCreate) -> NoteModel:
 
 
 def get_note_by_id(db: Session, note_id: str) -> NoteModel | None:
-    return db.get(NoteModel, note_id)
+    stmt = (
+        select(NoteModel)
+        .options(selectinload(NoteModel.tags))
+        .where(NoteModel.id == note_id)
+    )
+    return db.scalars(stmt).first()
 
 
 def search_notes(
@@ -29,22 +36,18 @@ def search_notes(
     tags: list[str] | None = None,
     limit: int = 10,
 ) -> list[NoteModel]:
-    stmt = select(NoteModel)
+    stmt = select(NoteModel).options(selectinload(NoteModel.tags))
 
     if query:
         stmt = stmt.where(
             NoteModel.title.ilike(f"%{query}%") | NoteModel.content.ilike(f"%{query}%")
         )
 
-    # Tag filtering: load results and filter in Python for portability
-    # (PostgreSQL JSON operators differ from SQLite)
-
-    results = list(db.scalars(stmt).all())
-
     if tags:
-        results = [n for n in results if set(tags) & set(n.tags or [])]
+        stmt = stmt.join(NoteModel.tags).where(TagModel.name.in_(tags))
 
-    return results[:limit]
+    stmt = stmt.distinct().limit(limit)
+    return list(db.scalars(stmt).all())
 
 
 def delete_note(db: Session, note_id: str) -> bool:

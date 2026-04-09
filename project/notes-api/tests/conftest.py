@@ -12,6 +12,7 @@ from sqlalchemy.orm import sessionmaker  # noqa: E402
 
 from app.database import Base, get_db  # noqa: E402
 from app.main import app  # noqa: E402
+from app.models import NoteModel, TagModel  # noqa: E402, F401
 
 test_engine = create_engine(
     "sqlite:///./test.db", connect_args={"check_same_thread": False}
@@ -22,6 +23,7 @@ test_engine = create_engine(
 def _set_sqlite_pragma(dbapi_conn, connection_record):
     cursor = dbapi_conn.cursor()
     cursor.execute("PRAGMA journal_mode=WAL")
+    cursor.execute("PRAGMA foreign_keys=ON")
     cursor.close()
 
 

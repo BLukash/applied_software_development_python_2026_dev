@@ -1,25 +1,13 @@
 from __future__ import annotations
 
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 
 from app.config import settings
-from app.database import Base, engine
 from app.routers import health, notes
 from app.schemas.common import ErrorResponse
 
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    Base.metadata.create_all(bind=engine)
-    yield
-
-
-app = FastAPI(
-    title=settings.app_name, version="0.2.0", debug=settings.debug, lifespan=lifespan
-)
+app = FastAPI(title=settings.app_name, version="0.3.0", debug=settings.debug)
 
 app.include_router(health.router)
 app.include_router(notes.router)
