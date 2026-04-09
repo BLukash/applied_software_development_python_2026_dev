@@ -1,0 +1,178 @@
+openapi: "3.1.0"
+info:
+  title: Notes API (Lecture 10 — with relationships)
+  version: "0.3.0"
+  description: >
+    Updated API with Tag relationship. Tags moved from JSON column
+    to separate table with foreign key.
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: getHealth
+      responses:
+        "200":
+          description: Service healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /notes/create:
+    post:
+      summary: Create a new note (with optional tags)
+      operationId: createNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NoteCreate"
+      responses:
+        "201":
+          description: Note created with tags
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NoteResponse"
+
+  /notes/{note_id}:
+    get:
+      summary: Get note with tags
+      operationId: getNoteById
+      parameters:
+        - name: note_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Note with related tags
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NoteResponse"
+        "404":
+          description: Not found
+
+    delete:
+      summary: Delete note (cascades to tags)
+      operationId: deleteNote
+      parameters:
+        - name: note_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Deleted (tags cascade-deleted)
+        "404":
+          description: Not found
+
+  /notes/search:
+    post:
+      summary: Search notes
+      operationId: searchNotes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NoteSearchQuery"
+      responses:
+        "200":
+          description: Search results with tags
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NoteSearchResult"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      required: [status, version]
+      properties:
+        status:
+          type: string
+        version:
+          type: string
+
+    NoteCreate:
+      type: object
+      required: [title, content]
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+        content:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+          default: []
+          description: Tag names (created as related Tag entities)
+
+    NoteResponse:
+      type: object
+      required: [id, title, content, tags, created_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        content:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tag names extracted from related Tag entities
+        created_at:
+          type: string
+          format: date-time
+
+    NoteSearchQuery:
+      type: object
+      properties:
+        query:
+          type: string
+          default: ""
+        tags:
+          type: array
+          items:
+            type: string
+          default: []
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+
+    NoteSearchResult:
+      type: object
+      required: [results, total]
+      properties:
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/NoteResponse"
+        total:
+          type: integer
+
+    ErrorResponse:
+      type: object
+      required: [detail, error_code]
+      properties:
+        detail:
+          type: string
+        error_code:
+          type: string
