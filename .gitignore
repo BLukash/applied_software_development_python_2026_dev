@@ -68,3 +68,7 @@ coverage.xml
 
 # Ruff
 .ruff_cache/
+
+# Lecture 11 — student-downloaded Stack Overflow Developer Survey dataset
+lectures/11-pandas-analytics/data/*.csv
+lectures/11-pandas-analytics/data/*.zip
