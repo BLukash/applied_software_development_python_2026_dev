@@ -17,8 +17,8 @@ Columns loaded from `data/survey_results_public.csv`:
 | `MainBranch` | object | Categorical text ("I am a developer by profession", "I am learning to code", …) |
 | `Country` | object | Free-text country name ("Ukraine", "United States of America", …) |
 | `EdLevel` | object | Educational attainment (ordered: primary school → master's → doctorate) |
-| `YearsCode` | object | Messy numeric — contains "Less than 1 year", "More than 50 years", and integer strings |
-| `YearsCodePro` | object | Same shape as `YearsCode` but for professional experience |
+| `YearsCode` | float64 | In 2025 Survey pre-cleaned to numeric (historical pre-2025 versions had "Less than 1 year" / "More than 50 years" sentinels — the lecture still teaches the `pd.to_numeric` technique on an inline synthetic example) |
+| `WorkExp` | float64 | Years of professional work experience — replaces the pre-2025 `YearsCodePro` column, which was dropped in 2025 |
 | `DevType` | object | Semicolon-separated multi-value (depending on 2025 schema — may be single-value) |
 | `LanguageHaveWorkedWith` | object | Semicolon-separated multi-value |
 | `LanguageWantToWorkWith` | object | Semicolon-separated multi-value |
@@ -30,12 +30,12 @@ Columns loaded from `data/survey_results_public.csv`:
 
 ### Stage 1 — After Cleaning (FR-010)
 
-Applied transformations:
+Applied transformations (2025 Survey is already well-curated, so these are idempotent / no-op on the real columns; the section's pedagogical value comes from an inline synthetic messy Series demonstrating the technique):
 
 | Column | New dtype | Transformation |
 |---|---|---|
-| `YearsCode` | float64 | `.replace({"Less than 1 year": 0.5, "More than 50 years": 51}).astype(float)` |
-| `YearsCodePro` | float64 | Same replacement + cast |
+| `YearsCode` | float64 | Idempotent `pd.to_numeric(errors="coerce")` — 2025 values already clean numeric |
+| `WorkExp` | float64 | Idempotent `pd.to_numeric(errors="coerce")` — 2025 values already clean numeric |
 | `ConvertedCompYearly` | float64 | Kept; `NaN` rows flagged but not dropped globally |
 | `EdLevel` | object | Unchanged at this stage (promoted to ordered `Categorical` in FR-034 section) |
 
@@ -77,7 +77,7 @@ Applied transformations produce `df_opt` (kept as a named copy so students can c
 |---|---|---|
 | `Country` | category | Unordered |
 | `DevType` | category | Unordered |
-| `EdLevel` | CategoricalDtype(ordered=True) | Order defined explicitly: primary → secondary → bachelor's → master's → professional → doctorate |
+| `EdLevel` | CategoricalDtype(ordered=True) | Order defined explicitly (2025 values use curly apostrophe `’`): primary → secondary → bachelor's → master's → professional. Comparisons use position-based `cat.codes >= master_pos` pattern for pandas-2.3 compatibility rather than direct `>=` on a string literal. |
 
 Side-by-side memory comparison: `df.memory_usage(deep=True).sum()` vs `df_opt.memory_usage(deep=True).sum()`.
 
@@ -90,7 +90,7 @@ The groupby / aggregation section produces several small result frames:
 | `top_languages` | (N≈20, 2) with `Language`, `count` | `languages_long.groupby("Language").size().nlargest(20)` |
 | `median_comp_by_country` | (N≈20, 2) with `Country`, `median_usd` | `df.groupby("Country")["ConvertedCompYearly"].median().nlargest(20)` |
 | `rust_want_by_devtype` | (N rows, %) | `pd.crosstab(df["DevType"], df["LanguageWantToWorkWith"].str.contains("Rust", na=False), normalize="index")` |
-| `ua_vs_global_median_years_pro` | (2 rows) | `df.groupby(df["Country"].eq("Ukraine").map({True: "UA", False: "Global"}))["YearsCodePro"].median()` |
+| `ua_vs_global_median_years_pro` | (2 rows) | `df.groupby(df["Country"].eq("Ukraine").map({True: "UA", False: "Global"}))["WorkExp"].median()` |
 
 ## Notebook Section Map
 
@@ -122,7 +122,7 @@ The groupby / aggregation section produces several small result frames:
 
 | Part | When | Time | Task | Hidden solution? |
 |---|---|---|---|---|
-| 1 | In-class | ~10–15 min | Median `YearsCodePro` for Ukrainian respondents vs global median | Hidden solution cell |
+| 1 | In-class | ~10–15 min | Median `WorkExp` for Ukrainian respondents vs global median | Hidden solution cell |
 | 2 | In-class | ~10–15 min | Top 10 languages among "Learning to code" respondents via `.explode()` | Hidden solution cell |
 | 3 | Homework | ~30–60 min | Pick one country → compare median comp across its 3 most-common `DevType` values; must use `Categorical`; produce tidy DataFrame + 3–5 sentence UA commentary | Reference solution collapsed at end; grading rubric (3 pts correctness, 2 pts clean pipeline, 1 pt commentary) |
 

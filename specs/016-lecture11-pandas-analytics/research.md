@@ -36,12 +36,13 @@ All NEEDS CLARIFICATION items from the spec were resolved in the 2026-04-23 clar
 | `MainBranch` | Categorical: "I am a developer by profession" / "I am learning to code" / ... — good for cleaning + filtering demos |
 | `Country` | The running Ukraine anchor; also the primary `groupby` / `Categorical` / `.nlargest` demo column |
 | `EdLevel` | Natural example of an **ordered** `Categorical` (primary school → doctorate) |
-| `YearsCode`, `YearsCodePro` | Messy numeric-ish columns ("Less than 1 year", "More than 50 years") — the FR-010 cleaning demo |
+| `YearsCode` | Total years coding — in 2025 Survey pre-cleaned to `float64` (historical pre-2025 versions had "Less than 1 year" / "More than 50 years" sentinels; lecture teaches the technique on an inline synthetic example for transferability) |
+| `WorkExp` | Years of professional work experience — **replaces** the pre-2025 `YearsCodePro` column which was dropped in the 2025 Survey schema |
 | `DevType` | Semicolon-separated multi-value in some years; used for mini-project Part 3 and crosstab demos |
 | `LanguageHaveWorkedWith`, `LanguageWantToWorkWith` | The semicolon-separated multi-value FR-012 `.explode()` demo |
 | `DatabaseHaveWorkedWith` | Secondary multi-value column for the second `.explode()` example and merge demo (language-stats joined onto DB-using respondents) |
 | `ConvertedCompYearly` | Numeric with heavy tails + missing values; primary `groupby().agg` and `apply`-based salary-band demo |
-| `RemoteWork` / `WorkExp` | Reserves for mini-project Part 3 open-ended exploration |
+| `RemoteWork` | Categorical text ("Remote" / "Hybrid..." / "In-person") — used in `pivot_table`/`crosstab` demos |
 
 **Rationale**: Loading all ~90 columns wastes memory (~200 MB expanded) and bloats every `.head()` output with noise. ~12 columns is enough for every pedagogical section. This list must be cross-checked against the actual 2025 schema during notebook authoring (one renaming between years is common — e.g., 2024 `YearsCodePro` stayed the same, but 2025 introduced new AI-focused columns like `AISelect`, `AIBen` that we deliberately skip to stay focused).
 

@@ -62,7 +62,8 @@ lectures/11-pandas-analytics/
 
 ## License / Download log
 
-<!-- Populated during T006 notebook-authoring session. Instructor: after downloading, fill in the date and file size for future debugging if a 2026 schema shift breaks assumptions. -->
-- Downloaded on: _YYYY-MM-DD_
-- File size: _~NN MB_
+<!-- Populated during T006 notebook-authoring session. Update on re-download if a schema shift breaks the notebook. -->
+- Downloaded on: 2026-04-23
+- File size: ~134 MB (`survey_results_public.csv`, 49,191 rows × 172 columns)
 - Source: <https://survey.stackoverflow.co/2025>
+- Schema notes (caught during T007 verification on 2026-04-23): the 2025 schema **drops** `YearsCodePro` (use `WorkExp` as the professional-experience proxy), **pre-cleans** `YearsCode` to numeric, and uses **curly apostrophe** (`'`, U+2019) in `EdLevel` values. All three are handled in the notebook.

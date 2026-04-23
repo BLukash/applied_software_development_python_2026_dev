@@ -5,9 +5,9 @@
 
 This document defines the expected output shapes and grading rubric for the three-part mini-project (FR-019). The notebook's hidden solution cells (Parts 1–2) and the collapsed reference solution (Part 3) MUST conform to these contracts.
 
-## Part 1 — In-class (~10–15 min): Ukrainian vs Global Median `YearsCodePro`
+## Part 1 — In-class (~10–15 min): Ukrainian vs Global Median `WorkExp`
 
-**Task statement (Ukrainian)**: "Обчисліть медіанне значення `YearsCodePro` для респондентів з України та порівняйте з глобальною медіаною. Виведіть обидва числа та різницю між ними (у роках)."
+**Task statement (Ukrainian)**: "Обчисліть медіанне значення `WorkExp` для респондентів з України та порівняйте з глобальною медіаною. Виведіть обидва числа та різницю між ними (у роках)."
 
 **Required techniques from earlier sections**: `df["Country"] == "Ukraine"` boolean mask, `.median()`, numeric comparison.
 
@@ -15,15 +15,15 @@ This document defines the expected output shapes and grading rubric for the thre
 
 ```text
 Series or scalar triple:
-  ua_median_years_pro:     float  (≥ 0, likely 3.0–8.0)
-  global_median_years_pro: float  (≥ 0, likely 7.0–12.0)
-  delta_years:             float  (signed; negative if UA lower)
+  ua_median_work_exp:     float  (≥ 0; on 2025 data ≈ 6.0)
+  global_median_work_exp: float  (≥ 0; on 2025 data ≈ 10.0)
+  delta_years:            float  (signed; negative if UA lower; on 2025 data ≈ -4.0)
 ```
 
 Printed form (exemplar):
 
 ```text
-Медіана YearsCodePro:
+Медіана WorkExp:
   Україна:    5.0 років
   Глобальна:  9.0 років
   Різниця:   -4.0 років (Україна нижче)

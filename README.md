@@ -68,7 +68,7 @@
 - CSV — робота з табличними даними
 - Міні-проект: книга контактів (ООП + файлова персистенція)
 
-### [Лекція 6: Веб-основи та FastAPI](lectures/06-web-fastapi-mcp/lecture-06.ipynb)
+### [Лекція 6: Веб-основи та FastAPI](lectures/06-web-fastapi/lecture-06.ipynb)
 - Основи веб-серверів — клієнт-серверна архітектура, запит-відповідь, порти
 - HTTP-основи — методи (GET/POST/PUT/DELETE), статус-коди, заголовки, JSON
 - Raw HTTP демо — http.server зі стандартної бібліотеки
@@ -76,10 +76,64 @@
 - FastAPI — app, routers, endpoints, path/query/body параметри
 - Pydantic — BaseModel, валідація, request vs response моделі, HTTPException
 - OpenAPI/Swagger — автоматична документація, uvicorn
-- Бутстрап проєкту — uv init/sync, структура app/routers/schemas/services/clients
+- Бутстрап проєкту — uv init/sync, структура app/routers/schemas/services
 - Інструменти якості — ruff + black
-- MCP (Model Context Protocol) — архітектура, три примітиви, keep-mcp приклад
-- [Проєкт: Notes API](lectures/06-web-fastapi-mcp/notes-api/) — FastAPI stub з GET /health, POST /notes/create, POST /notes/search
+- [Проєкт: Notes API](project/notes-api/) — FastAPI stub з GET /health, POST /notes/create, POST /notes/search
+
+### [Лекція 7: Async, HTTPX, Testing та Quality Workflow](lectures/07-async-testing/lecture-07.ipynb)
+- Async-основи — інтуїція event loop, async/await, чому це важливо для FastAPI
+- HTTP-клієнт httpx — синхронний vs асинхронний, таймаути, обробка помилок
+- Конфігурація — .env, змінні оточення, pydantic-settings
+- Тестування — pytest, FastAPI TestClient, fixtures, parametrize
+- Практика тестування — покриття CRUD-ендпоїнтів тестами
+- Quality workflow — lint + format + tests як одна команда (make check)
+- Розширення [Notes API](project/notes-api/) — async-виклики, тести, налаштування
+
+### [Лекція 8: MCP — Model Context Protocol](lectures/08-mcp/lecture-08.ipynb)
+- Концепція MCP — "USB-C для AI", навіщо потрібні стандартизовані протоколи
+- Архітектура — Host, Client, Server (три учасники з діаграмами)
+- Три примітиви — Tools, Resources, Prompts: що це й коли що використовувати
+- Життєвий цикл — як клієнти запускають та керують серверами (subprocess)
+- Транспорти — stdio vs SSE/HTTP, порівняльна таблиця
+- Практика — keep-mcp через pipx, Google Master Token auth, конфіг LLM-клієнта
+- Live demo — search, create, list нотаток через keep-mcp + LLM
+- Безпека — safe/unsafe mode, принцип найменших привілеїв
+- Тестування MCP-інтеграцій — monkeypatch, integration-test flag
+
+### [Лекція 9: Docker, PostgreSQL та SQLAlchemy](lectures/09-docker-postgres-sqlalchemy/lecture-09.ipynb)
+- Docker як інструмент — контейнери (1-хвилинний recap), docker-compose.yml для FastAPI + Postgres
+- Налаштування підключення — connection string з .env, sqlalchemy.create_engine
+- SQLAlchemy ORM — концепція (class = table), моделі, Engine, Session, Base.metadata.create_all
+- CRUD через ORM — заміна in-memory stubs на справжню БД, транзакції (session.commit)
+- Обробка помилок — not found → 404, unique constraint → 409
+- Шаровність — repository.py, router → service → repository flow
+- Розширення [Notes API](project/notes-api/) — docker compose up, CRUD з PostgreSQL, repository-шар
+
+### [Лекція 10: Міграції, Зв'язки та Цілісність даних](lectures/10-migrations-relationships/lecture-10.ipynb)
+- Навіщо міграції — проблема еволюції схеми, що ламається при зміні моделі
+- Alembic workflow — init, revision --autogenerate, upgrade/downgrade (один раз end-to-end)
+- Зв'язки — one-to-many (Tag → Note), ForeignKey, relationship(), cascade
+- Проєктування БД — індекси, обмеження (unique, not null, foreign key), "думай про запити першим"
+- Тестування з реальною БД — fixtures створення/руйнування test DB (на контрасті з L7 in-memory)
+- psql toolkit — базові команди: \dt, \d table_name, SELECT з JOIN
+- Розширення [Notes API](project/notes-api/) — Alembic ініціалізовано, Tag модель, міграції
+
+### [Лекція 11: pandas глибоке занурення на Stack Overflow Developer Survey 2025](lectures/11-pandas-analytics/lecture-11.ipynb)
+- Коли pandas — правильний інструмент (та коли ні — DuckDB, Polars)
+- Series vs DataFrame з чистого Python — перш ніж торкатися CSV
+- pd.read_csv — usecols, dtype, na_values на справжньому 49K-рядковому CSV
+- Чистка даних — pd.to_numeric(errors="coerce"), isna/fillna/dropna
+- Індексація — .loc, .iloc, boolean masks, .query(), .isin()
+- Багатозначні колонки — str.split(";") + .explode()
+- groupby з агрегаціями — single/multi-key, named aggregations, dropna=False (з українським якорем)
+- merge з validate= — захист від випадкового many-to-many
+- pivot_table та crosstab — з margins та normalize
+- Сортування та top-N — .nlargest, .sort_values, .rank
+- Method chaining — .pipe, .assign, stepwise vs chained
+- .apply / .map + %timeit бенчмарк проти векторизації
+- Categorical dtype — пам'ять (−36% на реальних даних) + впорядковані категорії
+- Коли pandas ламається — концептуальний огляд DuckDB та Polars
+- Міні-проєкт "Developer Survey Insights" — 3 частини (25 хв в аудиторії + 30–60 хв вдома)
 
 ## Експериментальний репозиторій
 

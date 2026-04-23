@@ -80,7 +80,7 @@ cells.append(
 
 1. Пояснити, **коли pandas — правильний інструмент**, а коли варто дивитися в бік DuckDB чи Polars.
 2. Розрізнити `Series` та `DataFrame` і будувати їх з чистого Python (без зовнішніх файлів).
-3. Завантажити справжній, "брудний" CSV з `pd.read_csv` та почистити його: типи, пропущені значення, незграбні рядкові маркери на кшталт `"Less than 1 year"`.
+3. Завантажити справжній CSV з `pd.read_csv` та вивчити його: типи, пропущені значення, примусове приведення типів (`pd.to_numeric(errors="coerce")`).
 4. Впевнено користуватися `.loc`, `.iloc`, булевими масками, `.query()`, `.isin()`, `.explode()`, `groupby().agg()`, `merge()`, `pivot_table` та `crosstab`.
 5. Застосовувати інтермедіат-патерни: method chaining (`.pipe`, `.assign`), `.apply` / `.map`, та `Categorical` dtype з реальним порівнянням використання пам'яті.
 6. Написати та захистити міні-проєкт **"Developer Survey Insights"** — три частини, від простого фільтру до повноцінної аналітичної історії.
@@ -222,15 +222,14 @@ cells.append(
     md(
         """### Якщо CSV відсутній
 
-Якщо `data/survey_results_public.csv` ще не на місці — ось що робити:
+Якщо `data/survey_results_public.csv` ще не на місці — ноутбук зупиниться на наступній клітинці з ясним повідомленням. Щоб це виправити:
 
 1. Відкрийте <https://survey.stackoverflow.co/> і знайдіть посилання **"Download the full data set (CSV)"**.
 2. Розпакуйте ZIP-архів.
 3. Покладіть `survey_results_public.csv` за шляхом `lectures/11-pandas-analytics/data/survey_results_public.csv`.
+4. Перезапустіть ноутбук з початку.
 
-Далі в ноутбуці ми **перевіряємо наявність файлу в першій клітинці коду нижче**. Якщо файлу нема — ноутбук не падає, а автоматично переходить у **режим синтетичних даних** (невеликий демо-датасет з такою самою формою колонок), щоб ви могли пройти лекцію end-to-end ще до того, як знайшли хвилину на завантаження справжнього CSV.
-
-> **⚠️ Для реальних висновків — завантажте справжній CSV.** Синтетичні дані потрібні лише для швидкого демо того, як працюють виклики pandas.
+> **Без реального CSV лекція не запрацює** — і це свідомо: вся цінність у тому, що ми працюємо зі справжніми даними 49 000 розробників, а не з іграшковими фіктивними записами.
 """
     )
 )
@@ -238,14 +237,14 @@ cells.append(
 cells.append(
     code(
         """# Колонки, які нам знадобляться протягом лекції.
-# Повний CSV має ~90 колонок; завантажимо лише потрібні для швидкості.
+# Повний CSV 2025 Survey має 172 колонки; завантажимо лише потрібні для швидкості.
 USECOLS = [
     "ResponseId",
     "MainBranch",
     "Country",
     "EdLevel",
-    "YearsCode",
-    "YearsCodePro",
+    "YearsCode",         # загальний стаж коду (вже числовий у 2025)
+    "WorkExp",           # років професійного досвіду (замінює історичний YearsCodePro)
     "DevType",
     "LanguageHaveWorkedWith",
     "LanguageWantToWorkWith",
@@ -254,72 +253,21 @@ USECOLS = [
     "RemoteWork",
 ]
 
-
-def _build_synthetic(n: int = 200) -> pd.DataFrame:
-    \"\"\"Fallback mini-dataset з такою самою формою колонок.
-    Використовується, якщо справжній CSV не знайдено.\"\"\"
-    import random
-
-    random.seed(42)
-    countries = ["Ukraine", "United States of America", "Germany", "Poland",
-                 "India", "United Kingdom", "Brazil", "Canada"]
-    ed_levels = ["Primary/elementary school",
-                 "Secondary school",
-                 "Bachelor's degree (B.A., B.S., B.Eng., etc.)",
-                 "Master's degree (M.A., M.S., M.Eng., MBA, etc.)",
-                 "Professional degree (JD, MD, Ph.D, Ed.D, etc.)",
-                 "Something else"]
-    dev_types = ["Developer, back-end", "Developer, front-end",
-                 "Developer, full-stack", "Data scientist or machine learning specialist",
-                 "Student", "DevOps specialist"]
-    langs_pool = ["Python", "JavaScript", "TypeScript", "Go", "Rust", "Java",
-                  "C#", "C++", "Ruby", "PHP", "HTML/CSS", "SQL", "Bash/Shell"]
-    dbs_pool = ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis", "Oracle"]
-    main_branches = ["I am a developer by profession",
-                     "I am learning to code",
-                     "I used to be a developer"]
-    years_pool = [str(i) for i in range(1, 40)] + ["Less than 1 year",
-                                                     "More than 50 years"]
-    remote_opts = ["Remote", "Hybrid (some remote, some in-person)", "In-person"]
-
-    def pick_many(pool, k_min=1, k_max=4):
-        k = random.randint(k_min, min(k_max, len(pool)))
-        return ";".join(random.sample(pool, k))
-
-    rows = []
-    for rid in range(1, n + 1):
-        comp = None if random.random() < 0.30 else random.randint(8_000, 250_000)
-        rows.append({
-            "ResponseId": rid,
-            "MainBranch": random.choice(main_branches),
-            "Country": random.choice(countries),
-            "EdLevel": random.choice(ed_levels) if random.random() > 0.05 else None,
-            "YearsCode": random.choice(years_pool),
-            "YearsCodePro": random.choice(years_pool) if random.random() > 0.20 else None,
-            "DevType": random.choice(dev_types),
-            "LanguageHaveWorkedWith": pick_many(langs_pool, 1, 5),
-            "LanguageWantToWorkWith": pick_many(langs_pool, 1, 5),
-            "DatabaseHaveWorkedWith": pick_many(dbs_pool, 1, 3),
-            "ConvertedCompYearly": comp,
-            "RemoteWork": random.choice(remote_opts),
-        })
-    return pd.DataFrame(rows)
-
-
-if SURVEY_PATH.exists():
-    df = pd.read_csv(
-        SURVEY_PATH,
-        usecols=USECOLS,
-        na_values=["NA", "N/A", ""],
-        low_memory=False,
+if not SURVEY_PATH.exists():
+    raise FileNotFoundError(
+        f"Не знайдено {SURVEY_PATH.resolve()}.\\n"
+        f"Завантажте ZIP з https://survey.stackoverflow.co/, розпакуйте, "
+        f"і покладіть survey_results_public.csv у теку lectures/11-pandas-analytics/data/. "
+        f"Деталі — у README.md."
     )
-    DATA_MODE = "real"
-    print(f"✅ Завантажено справжній Survey 2025: {len(df):,} рядків × {df.shape[1]} колонок")
-else:
-    df = _build_synthetic()
-    DATA_MODE = "synthetic"
-    print("⚠️  Справжній CSV не знайдено — працюємо із синтетичним міні-датасетом "
-          f"({len(df)} рядків). Дивіться README, щоб завантажити справжній.")
+
+df = pd.read_csv(
+    SURVEY_PATH,
+    usecols=USECOLS,
+    na_values=["NA", "N/A", ""],
+    low_memory=False,
+)
+print(f"✅ Завантажено Survey {SURVEY_YEAR}: {len(df):,} рядків × {df.shape[1]} колонок")
 """
     )
 )
@@ -365,12 +313,14 @@ cells.append(
 
 *(Якщо картинка не відображається — це нормально, мем — педагогічний гарнір. Головне — код нижче.)*
 
-Справжні CSV завжди брудні. Дві найчастіші проблеми:
+У справжніх CSV завжди дві проблеми:
 
-1. **Неправильні типи.** Колонка, яку ми очікуємо числовою (`YearsCodePro`), приїжджає як `object` (рядок), бо в ній сидять значення на кшталт `"Less than 1 year"` або `"More than 50 years"`.
-2. **Пропущені значення (NaN).** Респонденти не зобов'язані відповідати на кожне питання.
+1. **Пропущені значення (NaN).** Респонденти не зобов'язані відповідати на кожне питання.
+2. **Неправильні типи.** Колонка, яку ми очікуємо числовою, інколи приїжджає як `object` (рядок), бо в ній сидять "граничні маркери" типу `"Less than 1 year"`, `"More than 50 years"` або просто сторонній текст.
 
-> **Примітка про дати:** у 2025 Survey **нема колонки з датою/часом відповіді**, тож `pd.to_datetime` ми тут не показуємо — повернемося до нього в лекції, де є справжні часові ряди.
+> **Увага:** 2025 Survey **уже добре причесаний** — `YearsCode` і `WorkExp` приїжджають як `float64`. У попередніх роках Survey (2023, 2024) ті самі колонки були `object` з рядковими граничними маркерами. Техніку `pd.to_numeric(errors="coerce")` ви все одно мусите знати — ви зустрінете її в інших CSV щотижня.
+
+> **Примітка про дати:** у 2025 Survey нема колонки з датою/часом відповіді, тож `pd.to_datetime` тут не показуємо — повернемося до нього в лекції, де є справжні часові ряди.
 
 ### 4.1. Скільки NaN у кожній колонці?
 """
@@ -385,30 +335,50 @@ cells.append(
 
 cells.append(
     md(
-        """### 4.2. "Less than 1 year" — чистимо YearsCode та YearsCodePro
+        """### 4.2. `pd.to_numeric(errors="coerce")` — на прикладі "брудної" Series
 
-Обидві колонки містять текстові "граничні" маркери, які ми хочемо перетворити на числа, не втрачаючи інформацію.
+Показуємо техніку на невеличкій **синтетичній** Series, щоб ви її впізнали, коли зустрінете в іншому CSV. У нашому 2025 Survey ця техніка — no-op (бо числа вже є), але запустити її безпечно в будь-якому разі.
 """
     )
 )
 
 cells.append(
     code(
-        """# Нормалізуємо текстові маркери → числові значення
-replacements = {
-    "Less than 1 year": 0.5,
-    "More than 50 years": 51.0,
-}
+        """# Демонстраційна Series із рядковими "граничними" маркерами
+# (саме такий вигляд мав YearsCodePro в Survey 2023/2024)
+messy = pd.Series(["1", "5", "Less than 1 year", "20", "More than 50 years",
+                   None, "не знаю", "10"])
+print("ДО: dtype =", messy.dtype)
+print(messy.tolist())
+print()
 
-df["YearsCode"] = pd.to_numeric(
-    df["YearsCode"].replace(replacements), errors="coerce"
-)
-df["YearsCodePro"] = pd.to_numeric(
-    df["YearsCodePro"].replace(replacements), errors="coerce"
+# Крок 1: replace — підміняємо відомі рядкові маркери на числа
+replacements = {"Less than 1 year": 0.5, "More than 50 years": 51.0}
+# Крок 2: to_numeric із errors="coerce" — решту нерозпізнаного перетворює на NaN
+cleaned = pd.to_numeric(messy.replace(replacements), errors="coerce")
+
+print("ПІСЛЯ: dtype =", cleaned.dtype)
+print(cleaned.tolist())"""
+    )
 )
 
-print(df[["YearsCode", "YearsCodePro"]].dtypes)
-df[["YearsCode", "YearsCodePro"]].describe()"""
+cells.append(
+    md(
+        """Принципово: `errors="coerce"` — **не** викидає виняток на незрозумілому значенні, а перетворює його на `NaN`. Це дає вам шанс побачити проблемні рядки (`cleaned.isna()`) і вирішити, що з ними робити, замість того щоб зупинити весь pipeline.
+
+### 4.3. Перевіримо на реальних даних 2025 Survey
+"""
+    )
+)
+
+cells.append(
+    code(
+        """# У 2025 ці колонки вже числові — виклик безпечний (no-op для вже-числових)
+df["YearsCode"] = pd.to_numeric(df["YearsCode"], errors="coerce")
+df["WorkExp"] = pd.to_numeric(df["WorkExp"], errors="coerce")
+
+print(df[["YearsCode", "WorkExp"]].dtypes)
+df[["YearsCode", "WorkExp"]].describe()"""
     )
 )
 
@@ -426,11 +396,11 @@ cells.append(
 
 cells.append(
     code(
-        """# Drop будь-які рядки, де нема YearsCodePro — бо для наших агрегацій потрібен стаж
+        """# Drop будь-які рядки, де нема WorkExp — бо для наших агрегацій потрібен стаж
 n_before = len(df)
-df_with_pro = df.dropna(subset=["YearsCodePro"])
+df_with_pro = df.dropna(subset=["WorkExp"])
 n_after = len(df_with_pro)
-print(f"dropna(subset=['YearsCodePro']): {n_before:,} → {n_after:,} рядків "
+print(f"dropna(subset=['WorkExp']): {n_before:,} → {n_after:,} рядків "
       f"(викинули {n_before - n_after:,})")"""
     )
 )
@@ -467,7 +437,7 @@ cells.append(
     code(
         """# .loc — за ярликами (індекс + імена колонок)
 # Перші 3 рядки (індекси 0, 1, 2) і дві конкретні колонки
-df.loc[0:2, ["Country", "YearsCodePro"]]"""
+df.loc[0:2, ["Country", "WorkExp"]]"""
     )
 )
 
@@ -491,7 +461,7 @@ cells.append(
 cells.append(
     code(
         """# ПРАВИЛЬНО: дужки навколо кожної маски
-mask = (df["YearsCodePro"] >= 5) & (df["ConvertedCompYearly"].notna())
+mask = (df["WorkExp"] >= 5) & (df["ConvertedCompYearly"].notna())
 n = mask.sum()
 print(f"Респондентів з ≥5 років стажу і вказаною компенсацією: {n:,}")"""
     )
@@ -500,7 +470,7 @@ print(f"Респондентів з ≥5 років стажу і вказано
 cells.append(
     code(
         """# ТА САМА вибірка через .query() — зазвичай читабельніше
-subset = df.query("YearsCodePro >= 5 and ConvertedCompYearly.notna()")
+subset = df.query("WorkExp >= 5 and ConvertedCompYearly.notna()")
 print(f".query() дає той самий результат: {len(subset):,} рядків")
 subset.head(3)"""
     )
@@ -593,7 +563,7 @@ cells.append(
 ua_mask = df["Country"] == "Ukraine"
 ua_vs_global = (
     df.groupby(ua_mask.map({True: "Україна", False: "Глобально"}))
-      ["YearsCodePro"]
+      ["WorkExp"]
       .median()
 )
 ua_vs_global"""
@@ -865,7 +835,7 @@ cells.append(
 step1 = df[df["MainBranch"] == "I am a developer by profession"]
 step2 = step1.dropna(subset=["ConvertedCompYearly"])
 step3 = step2.assign(comp_band=(step2["ConvertedCompYearly"] // 25_000) * 25_000)
-step4 = step3[["Country", "DevType", "YearsCodePro", "comp_band"]]
+step4 = step3[["Country", "DevType", "WorkExp", "comp_band"]]
 
 print(step4.shape)
 step4.head(5)"""
@@ -879,7 +849,7 @@ chained = (
     df.loc[df["MainBranch"] == "I am a developer by profession"]
       .dropna(subset=["ConvertedCompYearly"])
       .assign(comp_band=lambda d: (d["ConvertedCompYearly"] // 25_000) * 25_000)
-      [["Country", "DevType", "YearsCodePro", "comp_band"]]
+      [["Country", "DevType", "WorkExp", "comp_band"]]
 )
 
 print(chained.shape)
@@ -965,7 +935,7 @@ def years_bucket(y):
     return "staff+ (10+)"
 
 
-df["years_bucket"] = df["YearsCodePro"].apply(years_bucket)
+df["years_bucket"] = df["WorkExp"].apply(years_bucket)
 df["years_bucket"].value_counts()"""
     )
 )
@@ -1060,17 +1030,19 @@ cells.append(
 
 cells.append(
     code(
-        """ed_order = [
+        """# Значення у 2025 Survey вживають "кучерявий" апостроф (’, U+2019) замість ASCII (')
+# — список нижче точно відображає рядки, які знайде df["EdLevel"].unique().
+ed_order = [
     "Primary/elementary school",
-    "Secondary school",
+    "Secondary school (e.g. American high school, German Realschule or Gymnasium, etc.)",
     "Some college/university study without earning a degree",
     "Associate degree (A.A., A.S., etc.)",
-    "Bachelor's degree (B.A., B.S., B.Eng., etc.)",
-    "Master's degree (M.A., M.S., M.Eng., MBA, etc.)",
+    "Bachelor’s degree (B.A., B.S., B.Eng., etc.)",
+    "Master’s degree (M.A., M.S., M.Eng., MBA, etc.)",
     "Professional degree (JD, MD, Ph.D, Ed.D, etc.)",
-    "Something else",
 ]
-# Беремо лише ті значення, які реально є в датасеті
+# Беремо лише ті значення, які реально є в датасеті (перестраховка, якщо
+# Stack Overflow поправить текст у наступному році)
 present = [v for v in ed_order if v in df["EdLevel"].dropna().unique()]
 ed_dtype = pd.CategoricalDtype(categories=present, ordered=True)
 
@@ -1079,8 +1051,14 @@ print("Категорії у порядку:")
 for i, c in enumerate(df_opt["EdLevel"].cat.categories, 1):
     print(f"  {i}. {c}")
 print("---")
-print("Тепер це дає впорядковане порівняння:")
-has_master_or_higher = df_opt["EdLevel"] >= "Master's degree (M.A., M.S., M.Eng., MBA, etc.)"
+
+# Впорядковане порівняння: беремо позицію Master's у списку категорій
+# і зберігаємо рядки, що знаходяться на ній або вище.
+master_label = "Master’s degree (M.A., M.S., M.Eng., MBA, etc.)"
+master_pos = df_opt["EdLevel"].cat.categories.get_loc(master_label)
+has_master_or_higher = df_opt["EdLevel"].cat.codes >= master_pos
+# cat.codes повертає -1 для NaN — не рахуємо їх як Master's+
+has_master_or_higher &= df_opt["EdLevel"].notna()
 print(f"Респондентів з Master's+ ступенем: {has_master_or_higher.sum():,}")"""
     )
 )
@@ -1100,11 +1078,12 @@ cells.append(
 ua_respondents = df_opt[df_opt["Country"] == "Ukraine"]
 print(f"Респондентів з України: {len(ua_respondents):,}")
 
-# Скільки з них має Master's+?
-ua_master_plus = ua_respondents[
-    ua_respondents["EdLevel"] >= "Master's degree (M.A., M.S., M.Eng., MBA, etc.)"
-]
-print(f"З них з Master's+ ступенем: {len(ua_master_plus):,}")"""
+# Скільки з них має Master's+? Використовуємо той самий позиційний прийом,
+# що і в попередній клітинці (cat.codes), щоб обійти особливості порівняння
+# Categorical × str у сучасному pandas.
+ua_pos = ua_respondents["EdLevel"].cat.codes
+ua_master_plus_mask = (ua_pos >= master_pos) & ua_respondents["EdLevel"].notna()
+print(f"З них з Master's+ ступенем: {ua_master_plus_mask.sum():,}")"""
     )
 )
 
@@ -1235,9 +1214,9 @@ cells.append(
 # ---- Part 1 ----
 cells.append(
     md(
-        """### Частина 1 — Медіанний `YearsCodePro`: Україна vs Глобально
+        """### Частина 1 — Медіанний `WorkExp`: Україна vs Глобально
 
-Порахуйте медіанне значення `YearsCodePro` для респондентів з України та порівняйте з глобальною медіаною. Виведіть обидва числа та різницю (у роках).
+Порахуйте медіанне значення `WorkExp` для респондентів з України та порівняйте з глобальною медіаною. Виведіть обидва числа та різницю (у роках).
 
 **Підказка:** Секція 7.1 — `groupby` з булевим ключем.
 
@@ -1250,11 +1229,11 @@ cells.append(
 cells.append(
     code(
         """# ==== РОЗВ'ЯЗОК ЧАСТИНИ 1 ====
-ua_median_years_pro = df.loc[df["Country"] == "Ukraine", "YearsCodePro"].median()
-global_median_years_pro = df["YearsCodePro"].median()
+ua_median_years_pro = df.loc[df["Country"] == "Ukraine", "WorkExp"].median()
+global_median_years_pro = df["WorkExp"].median()
 delta_years = ua_median_years_pro - global_median_years_pro
 
-print("Медіана YearsCodePro:")
+print("Медіана WorkExp:")
 print(f"  Україна:    {ua_median_years_pro:.1f} років")
 print(f"  Глобальна:  {global_median_years_pro:.1f} років")
 print(f"  Різниця:   {delta_years:+.1f} років "
@@ -1334,7 +1313,7 @@ cells.append(
 За цю лекцію ми пройшли повний шлях від "чистий Python" до "справжня аналітика на живих даних":
 
 - **Основи:** Series, DataFrame, `pd.read_csv` з `usecols=` та `na_values=`.
-- **Чистка:** dtype coercion, `isna`/`fillna`/`dropna`, нормалізація "Less than 1 year".
+- **Чистка:** `pd.to_numeric(errors="coerce")` як безпечний шаблон для приведення типів, `isna`/`fillna`/`dropna` для пропущених значень.
 - **Вибірка:** `.loc`, `.iloc`, булеві маски з дужками, `.query()`, `.isin()`.
 - **Багатозначні колонки:** `str.split(";")` + `.explode()` — один рядок на одне значення.
 - **Агрегації:** `groupby().agg()` з named aggregations, `dropna=False`, multi-key.
@@ -1344,7 +1323,7 @@ cells.append(
 - **Інтермедіат-патерни:** method chaining (`.pipe`, `.assign`), `.apply`/`.map` з бенчмарком проти векторизації, `Categorical` dtype з реальним виграшем пам'яті.
 - **Кордони:** коли pandas ламається і куди дивитися — DuckDB, Polars.
 
-**Наскрізний якір:** Україна — з'явилася в розділах groupby, Categorical та в Частині 1 міні-проєкту. Ви бачили, як наша країна виглядає на глобальній мапі `YearsCodePro` та освітнього рівня.
+**Наскрізний якір:** Україна — з'явилася в розділах groupby, Categorical та в Частині 1 міні-проєкту. Ви бачили, як наша країна виглядає на глобальній мапі `WorkExp` та освітнього рівня.
 """
     )
 )
