@@ -198,11 +198,10 @@ Each lecture MUST build upon previous lectures while remaining self-contained en
     - NumPy arrays vs Python lists (performance reasons)
     - Vectorization: broadcasting, dot, elementwise ops
     - Measuring performance (very light): %timeit idea
+    - Example of numpy operations
     - Simple ML model from scratch:  logistic regression binary classifier
     - Metrics basics: accuracy, precision/recall (minimal)
     - Saving/loading model parameters (np.save)
-    - Project increment:
-    Add "/ml/predict" endpoint: example: classify note as "important vs not" (toy but real pipeline)
 - Lecture 13 — Visualization (storytelling) + project reporting
     Topics
     - Matplotlib basics: line/bar/hist/scatter
