@@ -135,6 +135,21 @@
 - Коли pandas ламається — концептуальний огляд DuckDB та Polars
 - Міні-проєкт "Developer Survey Insights" — 3 частини (25 хв в аудиторії + 30–60 хв вдома)
 
+### [Лекція 12: NumPy, векторизація та логістична регресія "з нуля"](lectures/12-numpy-ml/lecture-12.ipynb)
+- Чому NumPy швидкий — суцільна пам'ять, фіксовані dtypes, диспатч до C/SIMD
+- Основи `ndarray` — `np.array`, `np.zeros`, `np.ones`, `np.arange`, `np.linspace`, `default_rng`
+- dtypes — `int32` vs `int64` vs `float32` vs `float64`, `astype`, пам'ять vs точність
+- Індексація: view vs copy — basic slicing, fancy indexing, boolean masking
+- Broadcasting — правила + 3 приклади + 1 `ValueError`
+- Поелементні / редукційні / лінійно-алгебраїчні операції — `np.exp`, `arr.sum(axis=)`, `np.dot`, `@`
+- `%timeit` — Python-цикл vs NumPy на 1 млн елементів (≈100×–500× прискорення)
+- Логістична регресія "з нуля" — sigmoid (числово стабільний), модель `ŷ = σ(Xw + b)`, BCE loss
+- Градієнтний спуск — аналітичний градієнт, train/test split без sklearn, цикл на 1000 епох
+- Метрики — accuracy, precision, recall, confusion matrix через NumPy (без sklearn)
+- Збереження / завантаження — `np.savez` + `np.load(allow_pickle=False)`, round-trip перевірка
+- scikit-learn для контексту — gated `try: import sklearn` cell (не runtime-залежність)
+- Міні-проєкт "Survey Salary Classifier" — 3 частини (vectorize → fit → engineer feature)
+
 ## Експериментальний репозиторій
 
 Цей репозиторій є експериментальним — лекції частково створені за допомогою AI-інструментів (Claude Code, SpecKit).

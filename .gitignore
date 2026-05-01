@@ -72,3 +72,6 @@ coverage.xml
 # Lecture 11 — student-downloaded Stack Overflow Developer Survey dataset
 lectures/11-pandas-analytics/data/*.csv
 lectures/11-pandas-analytics/data/*.zip
+
+# Lecture 12 — student-generated trained model artifact
+lectures/12-numpy-ml/artifacts/*.npz
