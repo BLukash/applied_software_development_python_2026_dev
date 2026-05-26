@@ -1,6 +1,8 @@
-# Lecture 12 — NumPy, Vectorization & a Logistic Regression Classifier from Scratch
+# Lecture 12 — NumPy & Vectorization on Real Data
 
-This lecture is a **standalone** NumPy + from-scratch ML deep dive. It does **not** depend on the L6–L10 `notes-api` project (no FastAPI, no PostgreSQL, no SQLAlchemy, no Docker). It reuses (read-only) the Stack Overflow Developer Survey CSV from L11; that CSV is **required** to run the notebook end-to-end.
+This lecture is a **standalone** NumPy deep dive applied to real-world data. It does **not** depend on the L6–L10 `notes-api` project (no FastAPI, no PostgreSQL, no SQLAlchemy, no Docker). It reuses (read-only) the Stack Overflow Developer Survey CSV from L11; that CSV is **required** to run the notebook end-to-end.
+
+> **No machine learning here.** Gradient descent, loss-minimization, classification metrics and `scikit-learn` are intentionally absent — those belong to next year's ML course. Today's focus is **NumPy as a tool**: indexing, broadcasting, vectorized statistics, group aggregations, top-K, loss-function formulas, and pairwise distances.
 
 ## One-time setup
 
@@ -30,28 +32,13 @@ lectures/11-pandas-analytics/data/survey_results_public.csv
 
 To download it, follow the L11 setup instructions in [`../11-pandas-analytics/README.md`](../11-pandas-analytics/README.md).
 
-### 3. (Optional) Install scikit-learn for the comparison cell
-
-The notebook includes one final "context" cell showing the same logistic-regression flow done with `sklearn.linear_model.LogisticRegression`. This cell is **gated behind a `try: import sklearn` block** — if sklearn is not installed, the cell prints a friendly skip message and the notebook continues without errors.
-
-```bash
-pip install scikit-learn   # optional
-```
-
 ## What's inside
 
 ```text
 lectures/12-numpy-ml/
 ├── README.md                  ← you are here
-├── lecture-12.ipynb           ← the notebook (1.5-hour lesson)
-├── artifacts/
-│   └── .gitkeep               ← placeholder; the notebook writes model.npz here
-└── assets/
-    ├── memes/                 ← 2 memes used in the notebook
-    └── diagrams/              ← logistic-regression flow diagram
+└── lecture-12.ipynb           ← the notebook
 ```
-
-The trained `model.npz` file produced when you run the notebook is `.gitignore`d, so your local copy will not be committed.
 
 ## Authoring environment
 

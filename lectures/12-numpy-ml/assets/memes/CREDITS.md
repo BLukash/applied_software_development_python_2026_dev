@@ -1,26 +1,38 @@
 # Memes — Credits & Sourcing
 
-This directory holds the two memes embedded in the Lecture 12 notebook.
+The Lecture 12 notebook embeds memes **by URL**, not by local file. There are
+currently no images committed to this directory.
 
-## Files
+## Embedded comics (all xkcd)
 
-| File | Used in section | Caption / template intent |
-|------|-----------------|---------------------------|
-| `numpy-vs-python-speed.png` | Section 8 — `%timeit` Python vs NumPy | Riff on the ~100×–500× speed gap. Suggested template: "Drake approving / disapproving" or "expanding-brain". |
-| `lr-is-just-sigmoid.png` | Section 9 — Перехід до ML | Riff on the "logistic regression sounds scary; actually it's just σ + cross-entropy" insight. Suggested template: "How it started / How it's going" or "It's not magic, it's just X". |
+| Section | Comic | URL |
+|---------|-------|-----|
+| 8 — `%timeit` Python vs NumPy | xkcd 1205 — *Is It Worth the Time?* | <https://xkcd.com/1205/> |
+| 11 — NumPy на даних Survey 2025 | xkcd 2400 — *Statistics* | <https://xkcd.com/2400/> |
+| 13 — Виявлення викидів через IQR | xkcd 1798 — *Box Plot* | <https://xkcd.com/1798/> |
+| 16 — Функції втрат (MSE, MAE, RMSE) | xkcd 2048 — *Curve-Fitting* | <https://xkcd.com/2048/> |
 
 ## License
 
-The currently-committed PNGs are **placeholder images** rendered programmatically by `_build_memes.py` so the notebook displays cleanly out-of-the-box. Re-run that script after editing it to regenerate them.
+xkcd comics by Randall Munroe are licensed under
+[**Creative Commons Attribution-NonCommercial 2.5**](https://xkcd.com/license.html).
+Inline attribution is provided in each markdown cell that embeds a comic.
 
-Instructors are encouraged to replace these placeholders with higher-quality generic meme templates that:
+## If a hot-linked image breaks
 
-- Use **public-domain meme templates** (no copyrighted characters beyond standard meme-culture imagery).
-- Contain **no russian-language text or russian-cultural references** (Constitution Principle I).
-- Render legibly at slide-projection size (≥ 600 px wide, sans-serif body text ≥ 24 pt).
+xkcd image URLs follow the stable pattern `https://imgs.xkcd.com/comics/<slug>.png`
+and are cached aggressively by their CDN. If a URL stops resolving, check the
+landing page (`https://xkcd.com/<num>/`) for the current image path and update
+the notebook accordingly.
 
-If you swap in a hand-sourced PNG, please:
+## Adding new memes
 
-1. Update this file with the source URL / template name and the meme's author/license.
-2. Keep the filename stable (`numpy-vs-python-speed.png`, `lr-is-just-sigmoid.png`) so the notebook's image references continue to resolve.
-3. If the notebook caption needs to change, edit it in `lecture-12.ipynb` rather than relying on the filename.
+When choosing a new meme:
+
+- Prefer **stable hosts** (xkcd, Wikimedia Commons, GitHub raw URLs in
+  long-established repos). Avoid imgur / 9gag / random forum hosts — they break.
+- Verify the **license** allows embedding (xkcd CC BY-NC 2.5 is fine for
+  non-commercial classroom use; always credit the author inline).
+- Constitution Principle I: **no russian-language text or russian-cultural
+  references** in any embedded image.
+- Add a row to the table above so the inventory stays current.
